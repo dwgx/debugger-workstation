@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-manifests:
+    name: Validate manifests & router (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate manifest JSON
+        run: |
+          python -c "import json,glob,sys
+          ok=True
+          for f in sorted(glob.glob('manifests/*.json')):
+              try:
+                  json.load(open(f,encoding='utf-8')); print('OK', f)
+              except Exception as e:
+                  ok=False; print('FAIL', f, e)
+          sys.exit(0 if ok else 1)"
+      - name: Compile-check router
+        run: python -m py_compile mcp/debugger-router/server.py
+
+  guard-no-secrets-or-binaries:
+    name: Guard against committed binaries/secrets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail if tracked binaries/credentials exist
+        run: |
+          set -e
+          # Tracked files that should never be committed
+          bad=$(git ls-files | grep -E '\.(exe|dll|zip|7z|pyc|apk|pcap|pcapng|dmp)$|(^|/)\.env$' || true)
+          if [ -n "$bad" ]; then
+            echo "::error::Disallowed tracked files found:"; echo "$bad"; exit 1
+          fi
+          echo "No disallowed binaries/credentials tracked."
+      - name: Scan for obvious secrets
+        run: |
+          set -e
+          if git grep -nIE 'ghp_[A-Za-z0-9]{20,}|gho_[A-Za-z0-9]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY-----' -- . ':!.github/workflows/*'; then
+            echo "::error::Possible secret found in tracked files."; exit 1
+          fi
+          echo "No obvious secrets found."
+
+  powershell-syntax:
+    name: PowerShell syntax (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse bootstrap.ps1
+        shell: pwsh
+        run: |
+          $errors = $null
+          [System.Management.Automation.PSParser]::Tokenize((Get-Content -Raw scripts/bootstrap.ps1), [ref]$errors) | Out-Null
+          if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Error $_.Message }; exit 1 }
+          Write-Host "bootstrap.ps1 parsed with no syntax errors."
+
+  link-check:
+    name: Check relative doc links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify relative markdown links resolve
+        run: |
+          python - <<'PY'
+          import re, glob, os, sys
+          bad = []
+          link = re.compile(r'\[[^\]]+\]\(([^)]+)\)')
+          for md in glob.glob('**/*.md', recursive=True):
+              base = os.path.dirname(md)
+              for m in link.finditer(open(md, encoding='utf-8').read()):
+                  t = m.group(1).split('#')[0].strip()
+                  if not t or t.startswith(('http://','https://','mailto:')):
+                      continue
+                  p = os.path.normpath(os.path.join(base, t))
+                  if not os.path.exists(p):
+                      bad.append(f"{md} -> {t}")
+          if bad:
+              print("Broken relative links:"); [print(" ", b) for b in bad]; sys.exit(1)
+          print("All relative markdown links resolve.")
+          PY

@@ -1,0 +1,89 @@
+# ============================================================
+# debugger-workstation .gitignore
+# 本仓库只放骨架/文档/manifest/自研代码,绝不放第三方工具二进制、
+# 凭据、样本、缓存或本机状态。以下规则是硬边界。
+# ============================================================
+
+# --- 凭据与私密 (最高优先级,绝不入库) ---
+.env
+.env.*
+*.env
+**/.env
+*.key
+*.pem
+*.pfx
+*.p12
+*.token
+*token*
+*secret*
+*credential*
+id_rsa*
+*.ovpn
+
+# --- 第三方工具二进制 / 大体积运行物 (靠 bootstrap 拉取,不入库) ---
+*.exe
+*.dll
+*.so
+*.dylib
+*.jar
+*.bin
+*.msi
+*.apk
+*.dex
+*.aab
+
+# --- 压缩包 / 分发产物 ---
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+
+# --- 运行时 / 虚拟环境 / 依赖 (体积大,可重建) ---
+.venv/
+venv/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+bin/Debug/
+bin/Release/
+obj/
+publish/
+Runtime/
+dotnet/
+dotnet-home/
+nuget-packages/
+apache-maven-*/
+
+# --- MCP 临时工作区 / 扫描数据 / 样本 ---
+MCP/workspaces/
+**/workspaces/
+**/YaraFlux/data/
+.codex_extracted/
+*_tmp_*/
+MCP_SMOKE_*/
+
+# --- 用户样本 / 取证产物 (严禁) ---
+*.pcap
+*.pcapng
+*.dump
+*.dmp
+*.CT
+*.ct
+*.har
+
+# --- 第三方 MCP 克隆目录 (由 bootstrap 按 manifest clone,不入库) ---
+mcp/third-party/
+
+# --- 本机开发历史 / IDE ---
+.codegraph/
+.vscode/
+.idea/
+*.log
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,10 @@
+@echo off
+set "PYTHONUTF8=1"
+set "PYTHONIOENCODING=utf-8"
+set "FASTMCP_SHOW_SERVER_BANNER=false"
+set "FASTMCP_CHECK_FOR_UPDATES=off"
+set "FASTMCP_ENABLE_RICH_LOGGING=false"
+set "PATH=%~dp0..\..\MCP\bin;%PATH%"
+set "APKTOOL_WORKSPACE=%~dp0..\..\MCP\workspaces\apktool"
+cd /d "%~dp0..\..\MCP\apktool-mcp-server"
+".venv\Scripts\python.exe" "apktool_mcp_server.py" --workspace "%~dp0..\..\MCP\workspaces\apktool"

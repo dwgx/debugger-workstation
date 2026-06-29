@@ -1,0 +1,99 @@
+# Codex MCP configuration example for this portable debugger toolbox.
+#
+# Replace {{DEBUGGER_ROOT}} with the actual extracted path, for example:
+# D:\\Tool\\debugger
+#
+# Recommended default: enable only debugger-router. Enable direct backends
+# through profiles when needed.
+
+[mcp_servers.debugger-router]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\debugger-router-mcp.cmd"
+enabled = true
+
+[mcp_servers.ghidra]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\ghidra-mcp.cmd"
+enabled = false
+
+[mcp_servers.x64dbg]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\x64dbg-mcp.cmd"
+enabled = false
+
+[mcp_servers.jadx]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\jadx-mcp.cmd"
+enabled = false
+
+[mcp_servers.apktool]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\apktool-mcp.cmd"
+enabled = false
+
+[mcp_servers.frida]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\frida-mcp.cmd"
+enabled = false
+
+[mcp_servers.imhex]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\imhex-mcp.cmd"
+enabled = false
+
+[mcp_servers.yaraflux]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\yaraflux-mcp.cmd"
+enabled = false
+
+[mcp_servers.mobsf]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\mobsf-mcp.cmd"
+enabled = false
+
+[mcp_servers.ilspy]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\ilspy-mcp.cmd"
+enabled = false
+
+[mcp_servers.dnspy]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\dnspy-mcp.cmd"
+enabled = false
+
+[mcp_servers.wireshark]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\wireshark-mcp.cmd"
+enabled = false
+
+[mcp_servers.reqable]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\reqable-mcp-local.cmd"
+enabled = false
+
+[mcp_servers.reclass]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\reclass-mcp.cmd"
+enabled = false
+
+[mcp_servers.sevenzip]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\7zip-mcp.cmd"
+enabled = false
+
+[mcp_servers.cheatengine]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\cheatengine-mcp.cmd"
+enabled = false
+
+# Suggested profiles:
+#
+# [profiles.mcp-mobile]
+# mcp_servers.jadx.enabled = true
+# mcp_servers.apktool.enabled = true
+# mcp_servers.frida.enabled = true
+# mcp_servers.mobsf.enabled = true
+# mcp_servers.reqable.enabled = true
+#
+# [profiles.mcp-re]
+# mcp_servers.ghidra.enabled = true
+# mcp_servers.x64dbg.enabled = true
+# mcp_servers.imhex.enabled = true
+# mcp_servers.ilspy.enabled = true
+# mcp_servers.dnspy.enabled = true
+# mcp_servers.reclass.enabled = true
+# mcp_servers.sevenzip.enabled = true
+# mcp_servers.yaraflux.enabled = true
+#
+# [profiles.mcp-net]
+# mcp_servers.wireshark.enabled = true
+# mcp_servers.reqable.enabled = true
+#
+# [profiles.mcp-ce]
+# mcp_servers.cheatengine.enabled = true
+# mcp_servers.x64dbg.enabled = true
+# mcp_servers.reclass.enabled = true

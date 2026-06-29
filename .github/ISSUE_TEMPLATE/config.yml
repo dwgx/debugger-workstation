@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability / 安全漏洞
+    url: https://github.com/dwgx/debugger-workstation/security/advisories/new
+    about: "Please report security issues privately — see SECURITY.md. 安全问题请私下报告,见 SECURITY.md。"

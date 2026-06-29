@@ -1,0 +1,44 @@
+{
+  "_comment": "第三方 MCP backend 清单。本仓库不包含这些项目的源码,bootstrap 按下表 clone 上游。许可与版权归各上游所有。license/stars 为 2026-06-29 联网核验值,可能随时变动;两个 dnSpy 仓库上游未声明 license(默认保留全部权利),使用前注意。",
+  "schema_version": "1.1",
+  "generated": "2026-06-29",
+  "verified": "2026-06-29",
+  "self_developed": {
+    "_comment": "本仓库自带、随仓库分发的自研核心(已在 mcp/ 目录中)。",
+    "debugger-router": {
+      "path": "MCP/debugger-router",
+      "entry": "server.py",
+      "origin": "self",
+      "note": "轻量按需路由,默认唯一启用的 MCP。提供 list_backends / list_backend_tools / call_backend_tool / smoke_backend / workflow_help。"
+    },
+    "bin": {
+      "path": "MCP/bin",
+      "origin": "self",
+      "note": "各后端 MCP 的 .cmd 包装脚本,使用相对路径 %~dp0,可移植。"
+    }
+  },
+  "third_party": [
+    { "name": "ILSpy-Mcp",            "git": "https://github.com/bivex/ILSpy-Mcp.git",                         "path": "MCP/ILSpy-Mcp",            "category": "dotnet",  "build": "dotnet",      "license": "MIT" },
+    { "name": "ReClass.NET-MCP",      "git": "https://github.com/NateWeav/ReClass.NET-MCP.git",                "path": "MCP/ReClass.NET-MCP",      "category": "memory",  "build": "dotnet",      "license": "MIT" },
+    { "name": "YaraFlux",             "git": "https://github.com/ThreatFlux/YaraFlux.git",                     "path": "MCP/YaraFlux",             "category": "rules",   "build": "python-venv", "needs_env": true, "license": "MIT" },
+    { "name": "apktool-mcp-server",   "git": "https://github.com/zinja-coder/apktool-mcp-server.git",          "path": "MCP/apktool-mcp-server",   "category": "mobile",  "build": "python-venv", "license": "Apache-2.0" },
+    { "name": "cheatengine-mcp-bridge","git": "https://github.com/miscusi-peek/cheatengine-mcp-bridge.git",    "path": "MCP/cheatengine-mcp-bridge","category": "memory", "build": "python",      "license": "MIT" },
+    { "name": "dnspy-mcp-extension",  "git": "https://github.com/malwarecakefactory/dnspy-mcp-extension.git",   "path": "MCP/dnspy-mcp-extension",  "category": "dotnet",  "build": "dotnet",      "license": "未声明(保留全部权利,使用前确认)" },
+    { "name": "dnspy-mcp",            "git": "https://github.com/soufianetahiri/dnspy-mcp.git",                "path": "MCP/dnspy-mcp",            "category": "dotnet",  "build": "dotnet",      "license": "未声明(保留全部权利,使用前确认)" },
+    { "name": "frida-mcp",            "git": "https://github.com/dnakov/frida-mcp.git",                        "path": "MCP/frida-mcp",            "category": "mobile-runtime", "build": "python-venv", "license": "MIT", "note": "其 .venv 同时被 debugger-router 复用作 python 解释器。" },
+    { "name": "imhexMCP",             "git": "https://github.com/jmpnop/imhexMCP.git",                         "path": "MCP/imhexMCP",             "category": "static-reversing", "build": "python", "license": "GPL-2.0" },
+    { "name": "mcp-wireshark",        "git": "https://github.com/khuynh22/mcp-wireshark.git",                  "path": "MCP/mcp-wireshark",        "category": "network", "build": "python",      "license": "MIT" },
+    { "name": "mcp7zop",              "git": "https://github.com/zv-louis/mcp7zop.git",                        "path": "MCP/mcp7zop",              "category": "unpacking", "build": "python",    "license": "MIT" },
+    { "name": "mobsf-mcp-server",     "git": "https://github.com/pullkitsan/mobsf-mcp-server.git",             "path": "MCP/mobsf-mcp-server",     "category": "mobile",  "build": "python",      "needs_env": true, "license": "MIT" },
+    { "name": "reqable-mcp",          "git": "https://github.com/ElonJask/reqable-mcp.git",                    "path": "MCP/reqable-mcp",          "category": "network", "build": "node",        "license": "MIT" }
+  ],
+  "resolved_upstream": {
+    "_comment": "原本无 .git origin、经 2026-06-29 联网核验确认的上游。首次 bootstrap 部署前建议比对当前目录与上游版本。",
+    "entries": [
+      { "name": "GhidraMCP",                 "git": "https://github.com/LaurieWired/GhidraMCP.git",                "path": "MCP/GhidraMCP",                "category": "static-reversing", "build": "python+java-plugin", "license": "Apache-2.0", "confidence": "high", "note": "事实标准 GhidraMCP(~9.4k star)。0xflux/ghidra-mcp、bethington/ghidra-mcp 均为其 fork;13bm/GhidraMCP 为同名独立实现。如需更多工具数可评估 bethington fork。" },
+      { "name": "jadx-mcp-server",           "git": "https://github.com/zinja-coder/jadx-mcp-server.git",          "path": "MCP/jadx-mcp-server",          "category": "mobile",           "build": "python",             "license": "Apache-2.0", "confidence": "high", "note": "Zin RE MCP Suite 的 python 服务端,需搭配 JADX 插件 zinja-coder/jadx-ai-mcp。" },
+      { "name": "x64dbg-automate",           "git": "https://github.com/dariushoule/x64dbg-automate.git",          "path": "MCP/x64dbg-automate",          "category": "debugger",         "build": "cpp-plugin",         "license": "MIT", "confidence": "high", "note": "x64dbg Automate 的 C++ 插件端(ZMQ+MessagePack 远程自动化)。" },
+      { "name": "x64dbg-automate-pyclient",  "git": "https://github.com/dariushoule/x64dbg-automate-pyclient.git", "path": "MCP/x64dbg-automate-pyclient", "category": "debugger",         "build": "python",             "license": "MIT", "confidence": "high", "note": "x64dbg Automate 的 python 客户端(PyPI x64dbg_automate 来源),与插件端同作者。" }
+    ]
+  }
+}

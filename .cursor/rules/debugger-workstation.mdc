@@ -1,0 +1,29 @@
+---
+description: debugger-workstation 工作站骨架仓库的 AI 操作规则与初始化握手
+alwaysApply: true
+---
+
+# debugger-workstation — Cursor 规则
+
+权威入口为根目录 `AGENTS.md`(Cursor 原生支持 AGENTS.md);本规则为始终生效的精简版。
+
+## 项目
+便携式逆向/安全分析工具站的**骨架仓库**。不含第三方工具二进制,靠 `manifests/` + `scripts/bootstrap.ps1` 从官方源还原。自研核心:`mcp/debugger-router`、`mcp/bin`。
+
+## 初始化握手(先问后做)
+用户要求初始化/搭建时,**禁止直接动手**。先:
+1. 探索(只读):读 `README.md`、`AGENTS.md`、`manifests/*.json`,检测 OS 与已装运行时。
+2. 提问:安装根目录?范围(哪些工具类)?是否 clone 全部 13 个 MCP?是否下载二进制?AI 客户端?是否需系统级组件(Npcap 等)?— 见 `templates/INIT_QUESTIONNAIRE.md`。
+3. 列计划给用户审。
+4. 确认后:`bootstrap.ps1` 先 dry-run 再 `-Apply [-CloneMcp]` → 按官方源取二进制 → 重建依赖 → 冒烟测试。
+
+## 边界
+- 不分发第三方工具二进制(版权归官方,见 `DISCLAIMER.md`)。
+- 不无声装驱动/服务/Npcap/Defender 例外/注册表/启动项;先说明后果再经同意。
+- 不提交 `.env`/凭据/样本/pcap/dump/APK。
+- 不在宿主机跑未知样本。仅限授权的安全测试/CTF/研究/教育。
+
+## MCP
+默认只启 `debugger-router`,按需起后端。模板在 `mcp/`。
+
+默认中文。完整规则见 `AGENTS.md`。

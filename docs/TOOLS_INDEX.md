@@ -160,7 +160,7 @@ Codex 直连 profile：
 | YaraFlux HTTP | `MCP\bin\yaraflux-http.cmd` | HTTP 服务模式，默认健康检查端口 `8000`。 |
 | MobSF MCP | `MCP\bin\mobsf-mcp.cmd` | 可启动，真实扫描需要 MobSF URL/API key。 |
 | ImHex MCP | `MCP\bin\imhex-mcp.cmd` | MCP 协议层可启动；真实 ImHex 操作需要 ImHex 网络接口 `localhost:31337`。 |
-| ILSpy MCP | `MCP\bin\ilspy-mcp.cmd` | 可启动，使用 `MCP\Runtime\dotnet`。 |
+| ILSpy MCP | `MCP\bin\ilspy-mcp.cmd` | 可启动，使用 `MCP\Runtime\dotnet`。.NET 9 dotnet tool(ToolCommandName=ilspy-mcp),上游不含预编译 exe;clone 后须 `dotnet publish -c Release -o publish`(产物 `publish\ILSpy.Mcp.exe`)或 `dotnet pack`+`tool install --tool-path publish`(产物 `publish\ilspy-mcp.exe`),包装脚本对两者都做了探测。 |
 | dnSpy MCP | `MCP\bin\dnspy-mcp.cmd` | 可启动，独立 stdio MCP。 |
 | Wireshark/tshark MCP | `MCP\bin\wireshark-mcp.cmd` | 可启动；脚本已绑定便携 `Network-HTTP\Wireshark\tshark.exe` 和 `dumpcap.exe`。离线 pcap 分析可用；实时抓包仍取决于 Npcap/权限。 |
 | Reqable MCP | `MCP\bin\reqable-mcp-local.cmd` | 可启动，Reqable 可向 `127.0.0.1:18765/report` 上报 HAR。 |

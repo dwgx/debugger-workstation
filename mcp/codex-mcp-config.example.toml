@@ -18,6 +18,10 @@ enabled = false
 command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\ida-pro-mcp.cmd"
 enabled = false
 
+[mcp_servers.radare2]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\radare2-mcp.cmd"
+enabled = false
+
 [mcp_servers.x64dbg]
 command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\x64dbg-mcp.cmd"
 enabled = false
@@ -74,6 +78,14 @@ enabled = false
 command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\cheatengine-mcp.cmd"
 enabled = false
 
+[mcp_servers.volatility3]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\volatility3-mcp.cmd"
+enabled = false
+
+[mcp_servers.virustotal]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\virustotal-mcp.cmd"
+enabled = false
+
 # Suggested profiles:
 #
 # [profiles.mcp-mobile]
@@ -86,6 +98,7 @@ enabled = false
 # [profiles.mcp-re]
 # mcp_servers.ghidra.enabled = true
 # mcp_servers.ida.enabled = true
+# mcp_servers.radare2.enabled = true
 # mcp_servers.x64dbg.enabled = true
 # mcp_servers.imhex.enabled = true
 # mcp_servers.ilspy.enabled = true
@@ -102,3 +115,8 @@ enabled = false
 # mcp_servers.cheatengine.enabled = true
 # mcp_servers.x64dbg.enabled = true
 # mcp_servers.reclass.enabled = true
+#
+# [profiles.mcp-intel]
+# mcp_servers.volatility3.enabled = true
+# mcp_servers.virustotal.enabled = true
+# mcp_servers.yaraflux.enabled = true

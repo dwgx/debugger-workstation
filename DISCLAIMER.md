@@ -4,7 +4,7 @@
 
 本仓库(debugger-workstation)是一个**骨架 / bootstrap 仓库**。它**不包含、不分发、不再发布**任何第三方逆向、调试、安全分析工具的源码或二进制,包括但不限于:
 
-Ghidra、IDA Pro、x64dbg、ImHex、Detect It Easy、capa、FLOSS、YARA-X、ILSpy、dnSpy/dnSpyEx、ReClass.NET、ScyllaHide、Cheat Engine、JADX、Apktool、MobSF、objection、Reqable、Wireshark、7-Zip、Universal Extractor、AssetRipper、Il2CppDumper、GoReSym、pyinstxtractor-ng、Sysinternals、System Informer 等。
+Ghidra、IDA Pro、radare2、x64dbg、ImHex、Detect It Easy、capa、FLOSS、YARA-X、ILSpy、dnSpy/dnSpyEx、ReClass.NET、ScyllaHide、Cheat Engine、JADX、Apktool、MobSF、objection、Reqable、Wireshark、7-Zip、Universal Extractor、AssetRipper、Il2CppDumper、GoReSym、pyinstxtractor-ng、Volatility 3、Sysinternals、System Informer 等。
 
 其中 **IDA Pro 是 Hex-Rays 的商业软件**,需用户自行购买授权并从官方安装;本仓库既不分发 IDA 本体,也不规避其授权。
 
@@ -12,7 +12,9 @@ Ghidra、IDA Pro、x64dbg、ImHex、Detect It Easy、capa、FLOSS、YARA-X、ILS
 
 ## 关于第三方 MCP server
 
-`manifests/mcp-backends.json` 中列出的第三方 MCP backend(ILSpy-Mcp、ReClass.NET-MCP、YaraFlux、apktool-mcp-server、cheatengine-mcp-bridge、dnspy-mcp、dnspy-mcp-extension、frida-mcp、ida-pro-mcp、imhexMCP、mcp-wireshark、mcp7zop、mobsf-mcp-server、reqable-mcp 等)的代码**不包含在本仓库中**,其版权和许可归各上游仓库所有。bootstrap 仅按上游 URL 执行 `git clone`。
+`manifests/mcp-backends.json` 中列出的第三方 MCP backend(ILSpy-Mcp、ReClass.NET-MCP、YaraFlux、apktool-mcp-server、cheatengine-mcp-bridge、dnspy-mcp、dnspy-mcp-extension、frida-mcp、ida-pro-mcp、imhexMCP、mcp-wireshark、mcp7zop、mobsf-mcp-server、reqable-mcp、radare2-mcp、volatility3-mcp、mcp-virustotal 等)的代码**不包含在本仓库中**,其版权和许可归各上游仓库所有。bootstrap 仅按上游 URL 执行 `git clone`。
+
+其中 **VirusTotal MCP(mcp-virustotal)** 在使用时会把哈希、URL、IP、域名等指标(IOC)发送到 VirusTotal 的公网 API,需用户自备 `VIRUSTOTAL_API_KEY`。请仅在获得授权的调查中使用,遵守 VirusTotal 服务条款,且不要上传含敏感信息的样本或数据。
 
 ## 自研部分
 

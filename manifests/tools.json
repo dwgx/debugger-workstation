@@ -17,7 +17,8 @@
       { "name": "YARA-X",          "version": "1.18.0", "latest_verified": "1.19.0", "update_available": true, "dir": "Static-Reversing/YARA-X",       "entry": "yr.exe", "official_source": "https://github.com/VirusTotal/yara-x/releases", "verify": true, "note": "1.19.0 于 2026-06-24 发布,建议更新。" },
       { "name": "ILSpy",           "version": "10.1",   "dir": "Static-Reversing/ILSpy",        "entry": "ILSpy.exe", "official_source": "https://github.com/icsharpcode/ILSpy/releases", "verify": true },
       { "name": "dnSpyEx",         "version": "6.6.0",  "dir": "Static-Reversing/dnSpyEx",      "entry": "dnSpy.exe", "official_source": "https://github.com/dnSpyEx/dnSpy/releases", "verify": true },
-      { "name": "ReClass.NET",     "version": "1.2",    "dir": "Static-Reversing/ReClass.NET",  "entry": "x64/ReClass.NET.exe", "official_source": "https://github.com/ReClassNET/ReClass.NET/releases", "verify": true }
+      { "name": "ReClass.NET",     "version": "1.2",    "dir": "Static-Reversing/ReClass.NET",  "entry": "x64/ReClass.NET.exe", "official_source": "https://github.com/ReClassNET/ReClass.NET/releases", "verify": true },
+      { "name": "radare2",         "version": "latest", "dir": "Static-Reversing/radare2",      "entry": "bin/radare2.exe", "official_source": "https://github.com/radareorg/radare2/releases", "verify": true, "note": "radare2-mcp(r2mcp)后端的前置依赖;装好后执行 `r2pm -Uci r2mcp` 编译 MCP 服务。" }
     ],
     "debuggers": [
       { "name": "x64dbg",      "version": "snapshot", "dir": "Debuggers/x64dbg",      "entry": "release/x64/x64dbg.exe", "official_source": "https://github.com/x64dbg/x64dbg/releases", "verify": true },
@@ -46,7 +47,8 @@
     ],
     "system-forensics": [
       { "name": "Sysinternals Suite", "version": "latest", "dir": "System-Forensics/SysinternalsSuite", "official_source": "https://learn.microsoft.com/sysinternals/downloads/sysinternals-suite", "verify": true },
-      { "name": "System Informer",    "version": "latest", "dir": "System-Forensics/systeminformer", "entry": "SystemInformer.exe", "official_source": "https://systeminformer.sourceforge.io/", "verify": true }
+      { "name": "System Informer",    "version": "latest", "dir": "System-Forensics/systeminformer", "entry": "SystemInformer.exe", "official_source": "https://systeminformer.sourceforge.io/", "verify": true },
+      { "name": "Volatility 3",        "version": "latest", "dir": "System-Forensics/volatility3", "official_source": "https://github.com/volatilityfoundation/volatility3/releases", "needs": "Python", "verify": true, "note": "内存镜像取证框架;volatility3-mcp 后端的前置(其 requirements 也会拉取)。" }
     ]
   }
 }

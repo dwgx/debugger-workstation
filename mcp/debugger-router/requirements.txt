@@ -1,0 +1,4 @@
+# debugger-router runtime deps.
+# server.py 只依赖 `mcp`(其中已含 mcp.server.fastmcp.FastMCP)。
+# bootstrap.ps1 -Apply 会为 router 建独立 .venv 并 pip install 本文件。
+mcp>=1.13,<2

@@ -44,6 +44,8 @@ MCP\bin\debugger-router-mcp.cmd
 | 后端 | 用途 |
 | --- | --- |
 | `ghidra` | Ghidra 项目、反编译、静态逆向。 |
+| `ida` | IDA Pro 插件桥接(端口 13337)。需用户自备 IDA Pro 8.3+ 并装插件。 |
+| `radare2` | radare2/r2mcp 二进制分析。需装 radare2 + `r2pm -Uci r2mcp`。 |
 | `x64dbg` | x64dbg 自动化和调试会话。 |
 | `jadx` | JADX GUI/plugin 辅助 APK/DEX 查看。 |
 | `apktool` | APK 解包、资源、smali、manifest、回编。 |
@@ -58,6 +60,8 @@ MCP\bin\debugger-router-mcp.cmd
 | `reclass` | ReClass.NET 内存结构桥接。 |
 | `sevenzip` | 压缩包列举、测试、提取、更新。 |
 | `cheatengine` | Cheat Engine Lua bridge。真实连接需要 CE 本体。 |
+| `volatility3` | Volatility3 内存镜像取证;离线分析 dump/raw。 |
+| `virustotal` | VirusTotal 威胁情报(URL/文件/IP/域名)。需 `VIRUSTOTAL_API_KEY`,会向公网 API 发送 IOC。 |
 
 ## Codex 配置
 

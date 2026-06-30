@@ -23,6 +23,8 @@ BACKEND_CONFIG = MCP_ROOT / ".mcp.json"
 
 BACKEND_META: dict[str, dict[str, str]] = {
     "ghidra": {"category": "static-reversing", "note": "Ghidra project/plugin backed analysis."},
+    "ida": {"category": "static-reversing", "note": "IDA Pro plugin bridge (port 13337); needs user-supplied IDA Pro 8.3+ with the ida-pro-mcp plugin installed."},
+    "radare2": {"category": "static-reversing", "note": "radare2/r2mcp binary analysis; needs radare2 + r2mcp installed via r2pm."},
     "x64dbg": {"category": "debugger", "note": "x64dbg automate bridge; needs debugger session for live work."},
     "jadx": {"category": "mobile", "note": "JADX GUI/plugin backed APK/DEX inspection."},
     "apktool": {"category": "mobile", "note": "APK decode/build/resource/smali workspace operations."},
@@ -37,6 +39,8 @@ BACKEND_META: dict[str, dict[str, str]] = {
     "reclass": {"category": "memory", "note": "ReClass.NET memory structure bridge; needs ReClass GUI/plugin."},
     "sevenzip": {"category": "unpacking", "note": "7-Zip archive listing/extract/update helpers."},
     "cheatengine": {"category": "memory", "note": "Cheat Engine Lua bridge; needs CE and bridge loaded for live work."},
+    "volatility3": {"category": "memory-forensics", "note": "Volatility3 memory-image forensics; exposes Vol3 plugins as tools."},
+    "virustotal": {"category": "threat-intel", "note": "VirusTotal URL/file/IP/domain intel; needs VIRUSTOTAL_API_KEY; sends IOCs to the public VT API."},
 }
 
 INSTRUCTIONS = (

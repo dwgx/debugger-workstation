@@ -57,7 +57,7 @@
 
 ## 2. MCP 策略
 
-- 默认**只启用 `debugger-router`** 一个轻量 MCP,它按需临时启动 16 个后端中需要的那个,用完退出。
+- 默认**只启用 `debugger-router`** 一个轻量 MCP,它按需临时启动 19 个后端中需要的那个,用完退出。
 - 不要默认一次性加载全部后端。需要直连时用 profile:`mcp-mobile` / `mcp-re` / `mcp-net` / `mcp-ce` / `mcp-all`。
 - 配置模板:`mcp/.mcp.json.template`、`mcp/codex-mcp-config.example.toml`(bootstrap 替换 `{{DEBUGGER_ROOT}}`)。
 - 后端清单与上游:`manifests/mcp-backends.json`。

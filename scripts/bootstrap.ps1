@@ -75,7 +75,8 @@ $mcpRoot = Join-Path $InstallRoot "MCP"
 # --- 1. 自研核心复制 (router + bin + 模板) ---
 Write-Step "部署自研 MCP 核心 (router / bin / 配置模板)"
 $selfMap = @(
-    @{ src = "mcp\debugger-router\server.py"; dst = "MCP\debugger-router\server.py" }
+    @{ src = "mcp\debugger-router\server.py"; dst = "MCP\debugger-router\server.py" },
+    @{ src = "mcp\debugger-router\requirements.txt"; dst = "MCP\debugger-router\requirements.txt" }
 )
 foreach ($m in $selfMap) {
     $src = Join-Path $RepoRoot $m.src
@@ -137,6 +138,34 @@ if (Test-Path $tomlTpl) {
     if ($Apply) {
         $tomlOut = (Get-Content $tomlTpl -Raw -Encoding UTF8).Replace('{{DEBUGGER_ROOT}}', $escaped)
         Write-Utf8NoBom $tomlDst $tomlOut
+    }
+}
+
+# --- 2b. router 自有 venv(默认启用的唯一 MCP,必须能独立启动)---
+Write-Step "debugger-router 运行环境 (.venv + requirements.txt)"
+$routerDir = Join-Path $mcpRoot "debugger-router"
+$routerVenv = Join-Path $routerDir ".venv"
+$routerReq = Join-Path $routerDir "requirements.txt"
+if (-not $havePy) {
+    Write-Warn2 "未检测到 python:无法为 router 建 .venv。请装 Python 3.11+ 后重跑,或确保 frida-mcp 的 .venv 已含 mcp 包(回退路径)。"
+} elseif (Test-Path (Join-Path $routerVenv "Scripts\python.exe")) {
+    Write-Plan "[skip] router .venv 已存在: $routerVenv"
+} else {
+    Write-Plan "python -m venv $routerVenv  然后 pip install -r requirements.txt"
+    if ($Apply) {
+        python -m venv $routerVenv
+        $venvPy = Join-Path $routerVenv "Scripts\python.exe"
+        if (Test-Path $venvPy) {
+            & $venvPy -m pip install --quiet --upgrade pip
+            & $venvPy -m pip install --quiet -r $routerReq
+            if ($LASTEXITCODE -ne 0) {
+                Write-Warn2 "router 依赖安装失败 (exit=$LASTEXITCODE):请检查网络,手动 `"$venvPy`" -m pip install -r `"$routerReq`"。"
+            } else {
+                Write-Plan "router .venv 就绪(已装 mcp)。"
+            }
+        } else {
+            Write-Warn2 "router .venv 创建失败:请确认 python 可用。"
+        }
     }
 }
 

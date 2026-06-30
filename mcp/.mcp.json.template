@@ -9,6 +9,9 @@
     "ida": {
       "command": "{{DEBUGGER_ROOT}}\\MCP\\bin\\ida-pro-mcp.cmd"
     },
+    "radare2": {
+      "command": "{{DEBUGGER_ROOT}}\\MCP\\bin\\radare2-mcp.cmd"
+    },
     "x64dbg": {
       "command": "{{DEBUGGER_ROOT}}\\MCP\\bin\\x64dbg-mcp.cmd"
     },
@@ -50,6 +53,12 @@
     },
     "cheatengine": {
       "command": "{{DEBUGGER_ROOT}}\\MCP\\bin\\cheatengine-mcp.cmd"
+    },
+    "volatility3": {
+      "command": "{{DEBUGGER_ROOT}}\\MCP\\bin\\volatility3-mcp.cmd"
+    },
+    "virustotal": {
+      "command": "{{DEBUGGER_ROOT}}\\MCP\\bin\\virustotal-mcp.cmd"
     }
   }
 }

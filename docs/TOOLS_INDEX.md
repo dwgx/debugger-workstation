@@ -131,17 +131,18 @@ AI 处理本目录前应先读 `AGENTS.md` 和本索引；进入 `OriginalBase` 
 
 后端清单：`MCP\.mcp.json`  
 启动脚本：`MCP\bin\`  
-Codex 默认入口：`debugger-router` 一个轻量 MCP。16 个后端 MCP 默认不随 Codex 启动；AI 需要时通过 router 临时启动后端并在调用后退出。
+Codex 默认入口：`debugger-router` 一个轻量 MCP。19 个后端 MCP 默认不随 Codex 启动；AI 需要时通过 router 临时启动后端并在调用后退出。
 
 Codex 直连 profile：
 
 | Profile | 用途 |
 | --- | --- |
 | `mcp-mobile` | 直连 JADX、Apktool、Frida、MobSF、Reqable。 |
-| `mcp-re` | 直连 Ghidra、IDA Pro、x64dbg、ImHex、ILSpy、dnSpy、ReClass、7-Zip、YaraFlux。 |
+| `mcp-re` | 直连 Ghidra、IDA Pro、radare2、x64dbg、ImHex、ILSpy、dnSpy、ReClass、7-Zip、YaraFlux。 |
 | `mcp-net` | 直连 Wireshark、Reqable。 |
 | `mcp-ce` | 直连 Cheat Engine、x64dbg、ReClass。 |
-| `mcp-all` | 直连全部 16 个后端 MCP。 |
+| `mcp-intel` | 直连 Volatility3、VirusTotal、YaraFlux。 |
+| `mcp-all` | 直连全部 19 个后端 MCP。 |
 
 示例：`codex --profile mcp-mobile`
 
@@ -150,6 +151,7 @@ Codex 直连 profile：
 | Debugger Router | `MCP\bin\debugger-router-mcp.cmd` | 默认启用；提供 `list_backends`、`list_backend_tools`、`call_backend_tool`、`smoke_backend`、`workflow_help`，按需临时启动后端 MCP。 |
 | GhidraMCP | `MCP\bin\ghidra-mcp.cmd` | 可启动。Ghidra 项目和插件连接后才能做真实程序分析。 |
 | IDA Pro MCP | `MCP\bin\ida-pro-mcp.cmd` | 可启动。需用户自备商业版 IDA Pro 8.3+(IDA Free 不支持),在 IDA 中执行 `ida-pro-mcp --install` 装插件后经端口 13337 对接;真实分析需 IDA 打开并加载插件。 |
+| radare2 MCP | `MCP\bin\radare2-mcp.cmd` | 可启动。纯 C 的官方 r2mcp,经 `r2pm -r r2mcp` 启动;需先装 radare2 并 `r2pm -Uci r2mcp`。 |
 | x64dbg automate MCP | `MCP\bin\x64dbg-mcp.cmd` | 可启动。需要 x64dbg automate 插件和调试会话配合。 |
 | JADX MCP | `MCP\bin\jadx-mcp.cmd` | 可启动。已强制 UTF-8 stdio 并关闭启动 banner，真实分析需要 JADX GUI/plugin listener。 |
 | Apktool MCP | `MCP\bin\apktool-mcp.cmd` | 可启动。已强制 UTF-8 stdio 并关闭启动 banner，工作区在 `MCP\workspaces\apktool`。 |
@@ -165,6 +167,8 @@ Codex 直连 profile：
 | ReClass.NET MCP | `MCP\bin\reclass-mcp.cmd` | 可启动；真实内存分析需要打开 ReClass.NET 并加载 MCP 插件。 |
 | 7-Zip MCP | `MCP\bin\7zip-mcp.cmd` | 可启动，已绑定本地 `7z.exe`。 |
 | Cheat Engine MCP | `MCP\bin\cheatengine-mcp.cmd` | 可启动；真实连接需要在 Cheat Engine 中加载 Lua bridge。按用户要求不做工具白名单限制，启动脚本启用 `CE_MCP_ALLOW_SHELL=1`。 |
+| Volatility3 MCP | `MCP\bin\volatility3-mcp.cmd` | 可启动。内存镜像取证,把 Vol3 插件暴露为 MCP 工具;需 Python 环境和内存 dump/raw 镜像。 |
+| VirusTotal MCP | `MCP\bin\virustotal-mcp.cmd` | 可启动(Node)。需环境变量 `VIRUSTOTAL_API_KEY`;会把哈希/URL/IP/域名等 IOC 发往 VirusTotal 公网 API,仅授权调查使用。 |
 
 MCP 相关目录：
 
@@ -172,6 +176,9 @@ MCP 相关目录：
 | --- | --- |
 | `MCP\GhidraMCP\` | Ghidra MCP 源码和 Python 环境。 |
 | `MCP\ida-pro-mcp\` | IDA Pro MCP 源码和 Python 环境(连接用户安装的 IDA 插件)。 |
+| `MCP\radare2-mcp\` | 官方 radare2 MCP(r2mcp)源码;经 r2pm 编译安装后运行。 |
+| `MCP\volatility3-mcp\` | Volatility3 MCP 源码和 Python 环境(内存取证)。 |
+| `MCP\mcp-virustotal\` | VirusTotal MCP 源码(Node);需 `VIRUSTOTAL_API_KEY`。 |
 | `MCP\x64dbg-automate\` | x64dbg automate 插件源码/包。 |
 | `MCP\x64dbg-automate-pyclient\` | Python client 和 MCP server 环境。 |
 | `MCP\mcp-wireshark\` | Wireshark/tshark MCP 源码和 Python 环境。 |

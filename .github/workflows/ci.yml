@@ -29,6 +29,8 @@ jobs:
           sys.exit(0 if ok else 1)"
       - name: Compile-check router
         run: python -m py_compile mcp/debugger-router/server.py
+      - name: Check backend wiring consistency
+        run: python scripts/check_backend_consistency.py
 
   guard-no-secrets-or-binaries:
     name: Guard against committed binaries/secrets

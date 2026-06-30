@@ -131,17 +131,17 @@ AI 处理本目录前应先读 `AGENTS.md` 和本索引；进入 `OriginalBase` 
 
 后端清单：`MCP\.mcp.json`  
 启动脚本：`MCP\bin\`  
-Codex 默认入口：`debugger-router` 一个轻量 MCP。15 个后端 MCP 默认不随 Codex 启动；AI 需要时通过 router 临时启动后端并在调用后退出。
+Codex 默认入口：`debugger-router` 一个轻量 MCP。16 个后端 MCP 默认不随 Codex 启动；AI 需要时通过 router 临时启动后端并在调用后退出。
 
 Codex 直连 profile：
 
 | Profile | 用途 |
 | --- | --- |
 | `mcp-mobile` | 直连 JADX、Apktool、Frida、MobSF、Reqable。 |
-| `mcp-re` | 直连 Ghidra、x64dbg、ImHex、ILSpy、dnSpy、ReClass、7-Zip、YaraFlux。 |
+| `mcp-re` | 直连 Ghidra、IDA Pro、x64dbg、ImHex、ILSpy、dnSpy、ReClass、7-Zip、YaraFlux。 |
 | `mcp-net` | 直连 Wireshark、Reqable。 |
 | `mcp-ce` | 直连 Cheat Engine、x64dbg、ReClass。 |
-| `mcp-all` | 直连全部 15 个后端 MCP。 |
+| `mcp-all` | 直连全部 16 个后端 MCP。 |
 
 示例：`codex --profile mcp-mobile`
 
@@ -149,6 +149,7 @@ Codex 直连 profile：
 | --- | --- | --- |
 | Debugger Router | `MCP\bin\debugger-router-mcp.cmd` | 默认启用；提供 `list_backends`、`list_backend_tools`、`call_backend_tool`、`smoke_backend`、`workflow_help`，按需临时启动后端 MCP。 |
 | GhidraMCP | `MCP\bin\ghidra-mcp.cmd` | 可启动。Ghidra 项目和插件连接后才能做真实程序分析。 |
+| IDA Pro MCP | `MCP\bin\ida-pro-mcp.cmd` | 可启动。需用户自备商业版 IDA Pro 8.3+(IDA Free 不支持),在 IDA 中执行 `ida-pro-mcp --install` 装插件后经端口 13337 对接;真实分析需 IDA 打开并加载插件。 |
 | x64dbg automate MCP | `MCP\bin\x64dbg-mcp.cmd` | 可启动。需要 x64dbg automate 插件和调试会话配合。 |
 | JADX MCP | `MCP\bin\jadx-mcp.cmd` | 可启动。已强制 UTF-8 stdio 并关闭启动 banner，真实分析需要 JADX GUI/plugin listener。 |
 | Apktool MCP | `MCP\bin\apktool-mcp.cmd` | 可启动。已强制 UTF-8 stdio 并关闭启动 banner，工作区在 `MCP\workspaces\apktool`。 |
@@ -170,6 +171,7 @@ MCP 相关目录：
 | 路径 | 用途 |
 | --- | --- |
 | `MCP\GhidraMCP\` | Ghidra MCP 源码和 Python 环境。 |
+| `MCP\ida-pro-mcp\` | IDA Pro MCP 源码和 Python 环境(连接用户安装的 IDA 插件)。 |
 | `MCP\x64dbg-automate\` | x64dbg automate 插件源码/包。 |
 | `MCP\x64dbg-automate-pyclient\` | Python client 和 MCP server 环境。 |
 | `MCP\mcp-wireshark\` | Wireshark/tshark MCP 源码和 Python 环境。 |

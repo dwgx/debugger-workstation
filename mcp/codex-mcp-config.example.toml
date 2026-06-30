@@ -14,6 +14,10 @@ enabled = true
 command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\ghidra-mcp.cmd"
 enabled = false
 
+[mcp_servers.ida]
+command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\ida-pro-mcp.cmd"
+enabled = false
+
 [mcp_servers.x64dbg]
 command = "{{DEBUGGER_ROOT}}\\MCP\\bin\\x64dbg-mcp.cmd"
 enabled = false
@@ -81,6 +85,7 @@ enabled = false
 #
 # [profiles.mcp-re]
 # mcp_servers.ghidra.enabled = true
+# mcp_servers.ida.enabled = true
 # mcp_servers.x64dbg.enabled = true
 # mcp_servers.imhex.enabled = true
 # mcp_servers.ilspy.enabled = true

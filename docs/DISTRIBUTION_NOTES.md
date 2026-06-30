@@ -45,7 +45,7 @@ OriginalBase\AGENTS.md
 
 ## AI/MCP 用法
 
-默认推荐只启用 `debugger-router`，它会按需临时启动后端 MCP。不要默认一次性加载全部 15 个后端，除非你明确要做全量 MCP 调试。
+默认推荐只启用 `debugger-router`，它会按需临时启动后端 MCP。不要默认一次性加载全部 16 个后端，除非你明确要做全量 MCP 调试。
 
 核心入口：
 

@@ -61,7 +61,7 @@ pwsh scripts\bootstrap.ps1 -Apply -CloneMcp -InstallRoot "D:\Tool\debugger"
 
 ## MCP 戦略
 
-デフォルトで有効なのは `debugger-router` という 1 つの軽量 MCP のみです。15 個のバックエンドのうち必要なものをオンデマンドで起動し、完了したら終了します。デフォルトですべてのバックエンドを一度にロードしないでください。直接接続する場合は profile（`mcp-mobile` / `mcp-re` / `mcp-net` / `mcp-ce` / `mcp-all`）を使用してください。
+デフォルトで有効なのは `debugger-router` という 1 つの軽量 MCP のみです。16 個のバックエンドのうち必要なものをオンデマンドで起動し、完了したら終了します。デフォルトですべてのバックエンドを一度にロードしないでください。直接接続する場合は profile（`mcp-mobile` / `mcp-re` / `mcp-net` / `mcp-ce` / `mcp-all`）を使用してください。
 
 ## セキュリティ境界
 

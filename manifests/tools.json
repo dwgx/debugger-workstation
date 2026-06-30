@@ -8,6 +8,7 @@
   "tools": {
     "static-reversing": [
       { "name": "Ghidra",          "version": "12.1.2", "dir": "Static-Reversing/Ghidra",      "entry": "ghidra_12.1.2_PUBLIC/ghidraRun.bat", "official_source": "https://github.com/NationalSecurityAgency/ghidra/releases", "needs": "Java", "verify": true },
+      { "name": "IDA Pro",         "version": "user-supplied", "dir": "Static-Reversing/IDA",   "official_source": "https://hex-rays.com/ida-pro", "auto_update": false, "verify": false, "note": "商业软件,需用户自行购买/授权并安装(IDA Pro 8.3+,IDA Free 不支持 ida-pro-mcp)。本仓库不下载、不分发 IDA。装好后由 ida-pro-mcp 后端通过 `ida-pro-mcp --install` 装插件并经端口 13337 对接。" },
       { "name": "PE-bear",         "version": "0.7.2",  "dir": "Static-Reversing/PE-bear",      "entry": "PE-bear.exe", "official_source": "https://github.com/hasherezade/pe-bear/releases", "verify": true },
       { "name": "ImHex",           "version": "1.38.1", "dir": "Static-Reversing/ImHex",        "entry": "imhex-gui.exe", "official_source": "https://github.com/WerWolv/ImHex/releases", "verify": true },
       { "name": "Detect It Easy",  "version": "3.21",   "dir": "Static-Reversing/die_win64_portable_3.21_x64", "entry": "die/die.exe", "official_source": "https://github.com/horsicq/DIE-engine/releases", "verify": true },

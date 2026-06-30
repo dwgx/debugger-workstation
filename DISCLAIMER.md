@@ -4,13 +4,15 @@
 
 本仓库(debugger-workstation)是一个**骨架 / bootstrap 仓库**。它**不包含、不分发、不再发布**任何第三方逆向、调试、安全分析工具的源码或二进制,包括但不限于:
 
-Ghidra、x64dbg、ImHex、Detect It Easy、capa、FLOSS、YARA-X、ILSpy、dnSpy/dnSpyEx、ReClass.NET、ScyllaHide、Cheat Engine、JADX、Apktool、MobSF、objection、Reqable、Wireshark、7-Zip、Universal Extractor、AssetRipper、Il2CppDumper、GoReSym、pyinstxtractor-ng、Sysinternals、System Informer 等。
+Ghidra、IDA Pro、x64dbg、ImHex、Detect It Easy、capa、FLOSS、YARA-X、ILSpy、dnSpy/dnSpyEx、ReClass.NET、ScyllaHide、Cheat Engine、JADX、Apktool、MobSF、objection、Reqable、Wireshark、7-Zip、Universal Extractor、AssetRipper、Il2CppDumper、GoReSym、pyinstxtractor-ng、Sysinternals、System Informer 等。
+
+其中 **IDA Pro 是 Hex-Rays 的商业软件**,需用户自行购买授权并从官方安装;本仓库既不分发 IDA 本体,也不规避其授权。
 
 这些工具的**版权、商标和许可均归各自官方 / 作者所有**。本仓库仅在 `manifests/tools.json` 中记录其名称、版本和**官方下载源链接**,由使用者通过 `scripts/bootstrap.ps1` 或手工从官方渠道获取。
 
 ## 关于第三方 MCP server
 
-`manifests/mcp-backends.json` 中列出的第三方 MCP backend(ILSpy-Mcp、ReClass.NET-MCP、YaraFlux、apktool-mcp-server、cheatengine-mcp-bridge、dnspy-mcp、dnspy-mcp-extension、frida-mcp、imhexMCP、mcp-wireshark、mcp7zop、mobsf-mcp-server、reqable-mcp 等)的代码**不包含在本仓库中**,其版权和许可归各上游仓库所有。bootstrap 仅按上游 URL 执行 `git clone`。
+`manifests/mcp-backends.json` 中列出的第三方 MCP backend(ILSpy-Mcp、ReClass.NET-MCP、YaraFlux、apktool-mcp-server、cheatengine-mcp-bridge、dnspy-mcp、dnspy-mcp-extension、frida-mcp、ida-pro-mcp、imhexMCP、mcp-wireshark、mcp7zop、mobsf-mcp-server、reqable-mcp 等)的代码**不包含在本仓库中**,其版权和许可归各上游仓库所有。bootstrap 仅按上游 URL 执行 `git clone`。
 
 ## 自研部分
 

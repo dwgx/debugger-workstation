@@ -61,7 +61,7 @@ pwsh scripts\bootstrap.ps1 -Apply -CloneMcp -InstallRoot "D:\Tool\debugger"
 
 ## MCP 策略
 
-默认只启用 `debugger-router` 一个轻量 MCP,它按需临时启动 15 个后端中需要的那个,用完退出。不要默认一次性加载全部后端。需要直连时用 profile(`mcp-mobile` / `mcp-re` / `mcp-net` / `mcp-ce` / `mcp-all`)。
+默认只启用 `debugger-router` 一个轻量 MCP,它按需临时启动 16 个后端中需要的那个,用完退出。不要默认一次性加载全部后端。需要直连时用 profile(`mcp-mobile` / `mcp-re` / `mcp-net` / `mcp-ce` / `mcp-all`)。
 
 ## 安全边界
 

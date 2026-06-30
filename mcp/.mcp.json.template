@@ -6,6 +6,9 @@
     "ghidra": {
       "command": "{{DEBUGGER_ROOT}}\\MCP\\bin\\ghidra-mcp.cmd"
     },
+    "ida": {
+      "command": "{{DEBUGGER_ROOT}}\\MCP\\bin\\ida-pro-mcp.cmd"
+    },
     "x64dbg": {
       "command": "{{DEBUGGER_ROOT}}\\MCP\\bin\\x64dbg-mcp.cmd"
     },

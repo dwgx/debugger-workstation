@@ -13,7 +13,7 @@ jobs:
     name: Validate manifests & router (Linux)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -36,7 +36,7 @@ jobs:
     name: Guard against committed binaries/secrets
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Fail if tracked binaries/credentials exist
         run: |
           set -e
@@ -58,7 +58,7 @@ jobs:
     name: PowerShell syntax (Windows)
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Parse bootstrap.ps1
         shell: pwsh
         run: |
@@ -71,7 +71,7 @@ jobs:
     name: Check relative doc links
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Verify relative markdown links resolve
         run: |
           python - <<'PY'

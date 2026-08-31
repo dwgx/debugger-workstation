@@ -1,0 +1,25 @@
+---
+description: debugger-workstation AI handshake, lazy MCP, and high-risk ops
+alwaysApply: true
+---
+
+# debugger-workstation — Cursor rules
+
+Authoritative file: root `AGENTS.md`.
+
+Skeleton reverse-engineering station. No third-party binaries in git. Restore with `manifests/` + `scripts/bootstrap.ps1`. In-tree core: `mcp/debugger-router`, `mcp/bin`.
+
+## Init (ask, then act)
+
+1. Explore (read-only): `README.md`, `AGENTS.md`, `manifests/*.json`.
+2. Ask: install root, scope, clone MCP?, download binaries?, client, Npcap? — `templates/INIT_QUESTIONNAIRE.md`.
+3. Plan, then confirm.
+4. `bootstrap.ps1` dry-run → `-Apply` → optional `-CloneMcp` → authorized `download-tools.ps1 -Apply`.
+
+## High-risk
+
+Drivers / Npcap / Defender / samples on the host: brief consequences and rollback, then follow intent. Do not silent-install drivers.
+
+## MCP
+
+Default: `debugger-router` only. Never `mcp-all` in user-global Cursor MCP. If the host already has idalib, do not add a second IDA server.

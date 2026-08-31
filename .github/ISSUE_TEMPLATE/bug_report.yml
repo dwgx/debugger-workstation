@@ -1,0 +1,55 @@
+name: Bug report / 问题报告
+description: Report a problem with the bootstrap script, router, manifests, or docs / 报告 bootstrap、router、清单或文档的问题
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a report. **Do not include credentials, tokens, or sample binaries.**
+        感谢报告。**请勿包含凭据、token 或样本二进制。**
+        For security-sensitive issues, use [SECURITY.md](https://github.com/dwgx/debugger-workstation/blob/main/SECURITY.md) instead.
+        安全敏感问题请改用 [SECURITY.md](https://github.com/dwgx/debugger-workstation/blob/main/SECURITY.md)。
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened? / 发生了什么?
+      description: Describe the problem and what you expected. / 描述问题与预期。
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce / 复现步骤
+      description: The exact command(s) you ran. / 你运行的确切命令。
+      placeholder: |
+        pwsh scripts\bootstrap.ps1 -Apply -InstallRoot "D:\Tool\debugger"
+      render: shell
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area / 涉及部分
+      options:
+        - bootstrap.ps1
+        - debugger-router (server.py)
+        - mcp/bin wrapper scripts
+        - manifests (tools.json / mcp-backends.json)
+        - docs / README
+        - other
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment / 环境
+      description: OS, PowerShell version, Python version. / 操作系统、PowerShell 版本、Python 版本。
+      placeholder: "Windows 11, PowerShell 5.1, Python 3.12"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant output / 相关输出
+      description: Paste the relevant console output (redact any secrets). / 粘贴相关输出(脱敏任何密钥)。
+      render: shell

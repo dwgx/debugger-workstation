@@ -1,0 +1,7 @@
+# debugger-router runtime deps.
+# server.py 只依赖 `mcp`(其中已含 mcp.server.fastmcp.FastMCP)。
+# bootstrap.ps1 -Apply 会为 router 建独立 .venv 并 pip install 本文件。
+mcp>=1.13,<2
+# Windows: pywin32 让 mcp 的 stdio_client 用 job object 级联终止后端进程树。
+# 缺它时,经 cmd.exe /c 启动的 .cmd 后端超时后,其子进程(python/node)会成孤儿。
+pywin32>=306 ; sys_platform == "win32"

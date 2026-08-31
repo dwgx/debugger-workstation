@@ -1,0 +1,132 @@
+# ============================================================
+# debugger-workstation .gitignore
+# 本仓库只放骨架/文档/manifest/自研代码,绝不放第三方工具二进制、
+# 凭据、样本、缓存或本机状态。以下规则是硬边界。
+# ============================================================
+
+# --- 凭据与私密 (最高优先级,绝不入库) ---
+.env
+.env.*
+*.env
+**/.env
+*.key
+*.pem
+*.pfx
+*.p12
+*.token
+*token*
+*secret*
+*credential*
+id_rsa*
+*.ovpn
+
+# --- 第三方工具二进制 / 大体积运行物 (靠 bootstrap 拉取,不入库) ---
+*.exe
+*.dll
+*.so
+*.dylib
+*.jar
+*.bin
+*.msi
+*.apk
+*.dex
+*.aab
+
+# --- 压缩包 / 分发产物 ---
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+
+# --- 运行时 / 虚拟环境 / 依赖 (体积大,可重建) ---
+.venv/
+venv/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+bin/Debug/
+bin/Release/
+obj/
+publish/
+Runtime/
+dotnet/
+dotnet-home/
+nuget-packages/
+apache-maven-*/
+
+# --- MCP 临时工作区 / 扫描数据 / 样本 ---
+MCP/workspaces/
+**/workspaces/
+**/YaraFlux/data/
+.codex_extracted/
+*_tmp_*/
+MCP_SMOKE_*/
+
+# --- 用户样本 / 取证产物 (严禁) ---
+*.pcap
+*.pcapng
+*.dump
+*.dmp
+*.CT
+*.ct
+*.har
+
+# --- 第三方 MCP 克隆目录 (由 bootstrap 按 manifest clone,不入库) ---
+mcp/third-party/
+mcp/ILSpy-Mcp/
+mcp/ReClass.NET-MCP/
+mcp/YaraFlux/
+mcp/apktool-mcp-server/
+mcp/cheatengine-mcp-bridge/
+mcp/dnspy-mcp-extension/
+mcp/dnspy-mcp/
+mcp/frida-mcp/
+mcp/ida-pro-mcp/
+mcp/imhexMCP/
+mcp/mcp-wireshark/
+mcp/mcp7zop/
+mcp/mobsf-mcp-server/
+mcp/reqable-mcp/
+mcp/radare2-mcp/
+mcp/volatility3-mcp/
+mcp/mcp-virustotal/
+mcp/GhidraMCP/
+mcp/jadx-mcp-server/
+mcp/x64dbg-automate/
+mcp/x64dbg-automate-pyclient/
+
+# --- 本机生成的 MCP 客户端配置 (含绝对路径) ---
+mcp/.mcp.json
+mcp/codex-mcp-config.toml
+/.mcp.json
+/.cursor/mcp.json
+
+# --- 部署后的分类目录 / 报告 / 原始包 (骨架仓库不含) ---
+/Static-Reversing/
+/Debuggers/
+/Mobile-Android/
+/Network-HTTP/
+/Unpackers-Game/
+/System-Forensics/
+/OriginalBase/
+/Launchers/
+/Reports/
+/_download-stage/
+LOCAL-THIS-PC.md
+notes/2026-09-01-binary-cache.md
+notes/2026-09-01-full-tool-download.md
+
+
+# --- 本机开发历史 / IDE ---
+.codegraph/
+.vscode/
+.idea/
+*.log
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,47 @@
+name: Tool / MCP request / 工具或 MCP 申请
+description: Propose adding a tool or MCP backend to the manifests / 申请向清单新增工具或 MCP 后端
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this to propose a new entry for `manifests/tools.json` or `manifests/mcp-backends.json`.
+        用于申请向 `manifests/tools.json` 或 `manifests/mcp-backends.json` 新增条目。
+        Remember: this repo records official sources only — it never ships binaries.
+        注意:本仓库只记录官方源,绝不分发二进制。
+  - type: input
+    id: name
+    attributes:
+      label: Name / 名称
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type / 类型
+      options:
+        - Tool (tools.json)
+        - MCP backend (mcp-backends.json)
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Official source URL / 官方源 URL
+      description: The authoritative upstream (official site or repo releases). / 权威上游(官网或仓库 release)。
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License / 许可
+      description: Upstream license (helps assess redistribution boundaries). / 上游许可。
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why / 理由
+      description: What capability does this add that existing entries don't cover? / 它补足了现有条目没有的什么能力?
+    validations:
+      required: true

@@ -1,0 +1,57 @@
+{
+  "_comment": "工具清单。本仓库不分发任何第三方工具二进制。bootstrap 按本表从各官方源下载到对应分类目录。版本与 official_source 已于 2026-06-29 联网核验(latest_verified/update_available)。下载前仍建议复核官方当前 release。",
+  "schema_version": "1.1",
+  "generated": "2026-06-29",
+  "verified": "2026-09-01",
+  "install_root_default": "D:\\Tool\\debugger",
+  "note_cheat_engine": "Cheat Engine 默认不更新、不自动下载,除非用户明确要求。",
+  "tools": {
+    "static-reversing": [
+      { "name": "Ghidra",          "version": "12.1.3", "dir": "Static-Reversing/Ghidra",      "entry": "ghidra_12.1.3_PUBLIC/ghidraRun.bat", "official_source": "https://github.com/NationalSecurityAgency/ghidra/releases", "needs": "Java", "verify": true },
+      { "name": "IDA Pro",         "version": "user-supplied", "dir": "Static-Reversing/IDA",   "official_source": "https://hex-rays.com/ida-pro", "auto_update": false, "verify": false, "note": "商业软件,需用户自行购买/授权并安装(IDA Pro 8.3+,IDA Free 不支持 ida-pro-mcp)。本仓库不下载、不分发 IDA。装好后由 ida-pro-mcp 后端通过 `ida-pro-mcp --install` 装插件并经端口 13337 对接。" },
+      { "name": "PE-bear",         "version": "0.7.2",  "dir": "Static-Reversing/PE-bear",      "entry": "PE-bear.exe", "official_source": "https://github.com/hasherezade/pe-bear/releases", "verify": true },
+      { "name": "ImHex",           "version": "1.38.1", "dir": "Static-Reversing/ImHex",        "entry": "imhex-gui.exe", "official_source": "https://github.com/WerWolv/ImHex/releases", "verify": true },
+      { "name": "Detect It Easy",  "version": "3.21",   "dir": "Static-Reversing/die_win64_portable_3.21_x64", "entry": "die/die.exe", "official_source": "https://github.com/horsicq/DIE-engine/releases", "verify": true },
+      { "name": "capa",            "version": "9.4.0",  "dir": "Static-Reversing/capa",         "entry": "capa.exe", "official_source": "https://github.com/mandiant/capa/releases", "verify": true },
+      { "name": "FLOSS",           "version": "3.1.1",  "dir": "Static-Reversing/FLOSS",        "entry": "floss.exe", "official_source": "https://github.com/mandiant/flare-floss/releases", "verify": true },
+      { "name": "YARA-X",          "version": "1.20.0", "dir": "Static-Reversing/YARA-X",       "entry": "yr.exe", "official_source": "https://github.com/VirusTotal/yara-x/releases", "verify": true },
+      { "name": "ILSpy",           "version": "10.1",   "dir": "Static-Reversing/ILSpy",        "entry": "ILSpy.exe", "official_source": "https://github.com/icsharpcode/ILSpy/releases", "verify": true },
+      { "name": "ilspycmd",     "version": "11.0.0.9375", "dir": "Static-Reversing/ilspycmd", "entry": "ilspycmd.exe", "official_source": "https://www.nuget.org/packages/ilspycmd", "verify": true, "note": "dotnet tool --tool-path. SmartCLI-friendly ILSpy console." },
+      { "name": "dnSpyEx",         "version": "6.6.0",  "dir": "Static-Reversing/dnSpyEx",      "entry": "dnSpy.exe", "official_source": "https://github.com/dnSpyEx/dnSpy/releases", "verify": true },
+      { "name": "ReClass.NET",     "version": "1.2",    "dir": "Static-Reversing/ReClass.NET",  "entry": "x64/ReClass.NET.exe", "official_source": "https://github.com/ReClassNET/ReClass.NET/releases", "verify": true },
+      { "name": "radare2",         "version": "6.2.0", "dir": "Static-Reversing/radare2",      "entry": "bin/radare2.exe", "official_source": "https://github.com/radareorg/radare2/releases", "verify": true, "note": "radare2-mcp(r2mcp)后端的前置依赖;装好后执行 `r2pm -Uci r2mcp` 编译 MCP 服务。" }
+    ],
+    "debuggers": [
+      { "name": "x64dbg",      "version": "snapshot", "dir": "Debuggers/x64dbg",      "entry": "release/x64/x64dbg.exe", "official_source": "https://github.com/x64dbg/x64dbg/releases", "verify": true },
+      { "name": "ScyllaHide",  "version": "latest",   "dir": "Debuggers/ScyllaHide",  "official_source": "https://github.com/x64dbg/ScyllaHide/releases", "verify": true },
+      { "name": "GH Injector", "version": "4.8",      "dir": "Debuggers/GH-Injector", "entry": "GH Injector SM - x64.exe", "official_source": "https://github.com/guidedhacking/GuidedHacking-Injector/releases", "verify": true, "note": "官方 zip 是注入器库 V4.8,入口是 Symbol Mapper GUI(GH Injector SM - x64.exe),不是 GH Injector.exe。" },
+      { "name": "Cheat Engine","version": "7.7", "dir": "Debuggers/Cheat Engine", "entry": "cheatengine-x86_64.exe", "official_source": "https://www.cheatengine.org/", "auto_update": false, "verify": true }
+    ],
+    "mobile-android": [
+      { "name": "JADX",        "version": "1.5.5",  "dir": "Mobile-Android/jadx",       "entry": "bin/jadx.bat", "official_source": "https://github.com/skylot/jadx/releases", "verify": true },
+      { "name": "Apktool",     "version": "3.0.2",  "dir": "Mobile-Android/Apktool",    "entry": "apktool.jar", "official_source": "https://github.com/iBotPeaches/Apktool/releases", "needs": "Java", "verify": true },
+      { "name": "MobSF",       "version": "latest", "dir": "Mobile-Android/MobSF",      "official_source": "https://github.com/MobSF/Mobile-Security-Framework-MobSF", "verify": true },
+      { "name": "objection",   "version": "1.12.5", "dir": "Mobile-Android/objection",  "official_source": "https://github.com/sensepost/objection (pip)", "build": "python-venv", "verify": true }
+    ],
+    "network-http": [
+      { "name": "Reqable",     "version": "3.2.23",  "dir": "Network-HTTP/reqable-app-windows-x86_64", "entry": "Reqable.exe", "official_source": "https://github.com/reqable/reqable-app/releases", "verify": true },
+      { "name": "Wireshark",   "version": "4.6.8-portable", "dir": "Network-HTTP/Wireshark",   "entry": "portable/App/Wireshark/tshark.exe", "official_source": "https://www.wireshark.org/download.html", "note": "PAF extracted under portable/. Installer: WiresharkPortable64_4.6.8.paf.exe. Npcap installer is under Npcap-installer.", "verify": true },
+      { "name": "Npcap",       "version": "1.88", "dir": "Network-HTTP/Npcap-installer", "entry": "npcap-1.88.exe", "official_source": "https://npcap.com/dist/", "note": "Free installer is GUI-only (/S is OEM). download-tools.ps1 does not run it.", "verify": true }
+    ],
+    "unpackers-game": [
+      { "name": "7-Zip full",       "version": "26.02", "dir": "Unpackers-Game/7-Zip-full", "entry": "7z.exe", "official_source": "https://github.com/ip7z/7zip/releases", "verify": true },
+      { "name": "7-Zip extra",      "version": "26.02", "dir": "Unpackers-Game/7-Zip",      "entry": "7za.exe", "official_source": "https://github.com/ip7z/7zip/releases", "verify": true },
+      { "name": "Universal Extractor", "version": "RC3", "dir": "Unpackers-Game/UniExtract", "entry": "UniExtract/UniExtract.exe", "official_source": "https://github.com/Bioruebe/UniExtract2/releases", "verify": true },
+      { "name": "AssetRipper",      "version": "1.3.14", "dir": "Unpackers-Game/AssetRipper", "entry": "AssetRipper.GUI.Free.exe", "official_source": "https://github.com/AssetRipper/AssetRipper/releases", "verify": true },
+      { "name": "Il2CppDumper",     "version": "6.7.46", "dir": "Unpackers-Game/Il2CppDumper-net6-win-v6.7.46", "entry": "Il2CppDumper.exe", "official_source": "https://github.com/Perfare/Il2CppDumper/releases", "verify": true },
+      { "name": "GoReSym",          "version": "latest", "dir": "Unpackers-Game/GoReSym",    "entry": "GoReSym.exe", "official_source": "https://github.com/mandiant/GoReSym/releases", "verify": true },
+      { "name": "pyinstxtractor-ng","version": "latest", "dir": "Unpackers-Game/pyinstxtractor-ng", "entry": "pyinstxtractor-ng.exe", "official_source": "https://github.com/pyinstxtractor/pyinstxtractor-ng/releases", "verify": true },
+      { "name": "UPX",               "version": "5.2.1", "dir": "Unpackers-Game/upx", "entry": "upx-5.2.1-win64/upx.exe", "official_source": "https://github.com/upx/upx/releases", "verify": true, "note": "SmartCLI-friendly pack/unpack." }
+    ],
+    "system-forensics": [
+      { "name": "Sysinternals Suite", "version": "latest", "dir": "System-Forensics/SysinternalsSuite", "official_source": "https://learn.microsoft.com/sysinternals/downloads/sysinternals-suite", "verify": true },
+      { "name": "System Informer",    "version": "latest", "dir": "System-Forensics/systeminformer", "entry": "SystemInformer.exe", "official_source": "https://systeminformer.sourceforge.io/", "verify": true },
+      { "name": "Volatility 3",        "version": "2.28.0", "dir": "System-Forensics/volatility3", "official_source": "https://github.com/volatilityfoundation/volatility3/releases", "needs": "Python", "verify": true, "note": "内存镜像取证框架;volatility3-mcp 后端的前置(其 requirements 也会拉取)。win-exes 2.28.0 in _download-stage." }
+    ]
+  }
+}

@@ -13,11 +13,11 @@
   "detect_order": [
     "user chat language",
     "local.json ui_language",
-    "WORKSTATION_UI_LANG / VRC_DCC_UI_LANG / DEBUGGER_UI_LANG",
+    "WORKSTATION_UI_LANG / DEBUGGER_UI_LANG",
     "Windows CurrentUICulture",
     "en"
   ],
   "chat": "Reply in the resolved locale. Commit messages and public git history stay English.",
   "questionnaire": "templates/i18n/<locale>/INIT_QUESTIONNAIRE.md with fallback templates/INIT_QUESTIONNAIRE.md",
-  "docs_i18n": "docs/i18n/<locale>/ for WORKFLOW, UNITY, ATTACH, RULES, I18N, AI_USAGE_GUIDE, CACHE when present"
+  "docs_i18n": "docs/i18n/<locale>/ for I18N, AI_USAGE_GUIDE, CACHE, MAINTAIN when present"
 }

@@ -6,7 +6,7 @@
 
 휴대용 리버스 엔지니어링 / 보안 분석 / 디버깅 / 언팩 / 모바일 분석 / 패킷 캡처 / 시스템 점검 / MCP 자동화를 위한 **뼈대 저장소**입니다.
 
-아무 AI 에이전트(Claude / Codex / Gemini / Cursor / Copilot / Grok)나 사람이 clone한 뒤 [docs/I18N.md](docs/I18N.md)로 UI 언어를 정하고, 맞는 [AGENTS.md](AGENTS.md)([한국어](AGENTS.ko.md)) 핸드셰이크를 따르면 자기 머신에 **AI가 다루기 쉬운** 도구 스테이션을 복원할 수 있습니다. 대화는 그 언어로, git 커밋 메시지는 영어입니다.
+아무 AI 에이전트(Claude / Codex / Gemini / Cursor / Copilot / Grok)나 사람이 clone한 뒤 [docs/i18n/ko/I18N.md](docs/i18n/ko/I18N.md)로 UI 언어를 정하고, 맞는 [AGENTS.md](AGENTS.md)([한국어](AGENTS.ko.md)) 핸드셰이크를 따르면 자기 머신에 **AI가 다루기 쉬운** 도구 스테이션을 복원할 수 있습니다. 대화는 그 언어로, git 커밋 메시지는 영어입니다.
 
 작업 후 에이전트는 `skills/debugger-review`로 점수를 매기고 `notes/`에 남깁니다. [docs/AGENT_EVOLUTION.md](docs/AGENT_EVOLUTION.md).
 

@@ -166,7 +166,7 @@ Mobile-Android\jadx\bin\jadx.bat --version
 
 ## 6. 布局
 
-见英文 [AGENTS.md](AGENTS.md) 第 5 节。语言文件：`README.<locale>.md`、`AGENTS.<locale>.md`、`docs/i18n/<locale>/`。
+见英文 [AGENTS.md](AGENTS.md) 第 6 节。语言文件：`README.<locale>.md`、`AGENTS.<locale>.md`、`docs/i18n/<locale>/`。
 
 ---
 

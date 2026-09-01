@@ -6,7 +6,7 @@
 
 ポータブルなリバースエンジニアリング / セキュリティ分析 / デバッグ / 展開 / モバイル分析 / パケットキャプチャ / システム検査 / MCP 自動化のための**雛形リポジトリ**です。
 
-任意の AI エージェント（Claude / Codex / Gemini / Cursor / Copilot / Grok）または人が clone し、[docs/I18N.md](docs/I18N.md) で UI 言語を決め、対応する [AGENTS.md](AGENTS.md)（[日本語](AGENTS.ja.md)）のヒアリングに従えば、自分のマシン上に **AI が操作しやすい** ツールステーションを復元できます。会話はその言語で。git のコミットメッセージは英語のままです。
+任意の AI エージェント（Claude / Codex / Gemini / Cursor / Copilot / Grok）または人が clone し、[docs/i18n/ja/I18N.md](docs/i18n/ja/I18N.md) で UI 言語を決め、対応する [AGENTS.md](AGENTS.md)（[日本語](AGENTS.ja.md)）のヒアリングに従えば、自分のマシン上に **AI が操作しやすい** ツールステーションを復元できます。会話はその言語で。git のコミットメッセージは英語のままです。
 
 仕事のあと、エージェントは `skills/debugger-review` で採点し、同じ失敗を繰り返さないよう `notes/` に残します。[docs/AGENT_EVOLUTION.md](docs/AGENT_EVOLUTION.md) を参照。
 

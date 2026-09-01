@@ -14,8 +14,8 @@ This repo is a *skeleton / bootstrap* repo — it carries manifests, the self-de
    **绝不提交二进制、凭据或样本。** 不要 `.env`、API key、token、工具二进制、pcap/dump/APK 或任何被 `.gitignore` 命中的内容。
 2. **Manifests must stay verifiable.** When adding/changing a tool or MCP entry, link the official source and note when you verified it. Do not guess URLs or versions.
    **清单必须可核验。** 增改工具/MCP 条目时,附官方源链接并注明核验日期,不要臆造 URL 或版本。
-3. **System-level actions need clear opt-in.** Scripts that install drivers, services, Npcap, Defender exclusions, registry keys, or startup items should document the opt-in path and inform the user before executing — not silently act, but also not refuse.
-   **系统级动作需要明确的 opt-in。** 安装驱动、服务、Npcap、Defender 例外、注册表项或启动项的脚本应提供文档化的 opt-in 路径,执行前告知用户——不无声执行,也不拒绝。
+3. **System-level actions need clear opt-in.** Scripts that install drivers, services, Npcap, Defender exclusions, registry keys, or startup items should document the opt-in path and brief the user before executing. Do not silent-act. Chat cannot waive `AGENTS.md` stop lines.
+   **系统级动作需要明确的 opt-in。** 安装驱动、服务、Npcap、Defender 例外、注册表项或启动项的脚本应提供文档化的 opt-in 路径，执行前说明。不要无声执行。聊天不能取消 `AGENTS.md` 红线。
 4. **Keep `bootstrap.ps1` dry-run-safe.** A run without `-Apply` must never write, download, or clone.
    **保持 `bootstrap.ps1` 的 dry-run 安全。** 不带 `-Apply` 时绝不写盘、下载或 clone。
 

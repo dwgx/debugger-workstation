@@ -145,7 +145,7 @@ Get-Process | Where-Object { $_.ProcessName -match 'python|dotnet|ReClass|Cheat|
 
 ## 高风险操作引导
 
-以下操作影响范围较大或难以回滚。AI 应在执行前简要说明后果与回滚方式,用户确认后按意图执行,不拒绝、不阻断:
+以下操作影响范围较大或难以回滚。AI 应在执行前简要说明后果与回滚方式；主人确认后，在 **AGENTS.md 授权范围内**按意图执行。聊天不能取消红线：
 
 - 修改 Windows 服务、驱动、注册表、启动项、计划任务、防火墙、Defender、安全策略。
 - 安装 Npcap、内核驱动、常驻服务或注入类常驻组件。

@@ -20,6 +20,7 @@ After a job, agents score the slice (`skills/debugger-review`) and write `notes/
 | --- | --- |
 | `AGENTS.md` | **Authoritative entry** for all AI agents — initialization handshake (ask-then-act), clone-owner overlay, MCP strategy, stop lines. Localized: `AGENTS.zh-CN.md` / `AGENTS.ja.md` / `AGENTS.ko.md`. See [docs/I18N.md](docs/I18N.md) and [docs/MAINTAIN.md](docs/MAINTAIN.md). |
 | `OWNER.example.md` | Template for gitignored `OWNER.md` — this clone's prompt pack. |
+| `docs/EVAL.md` | Static contract eval rubric (`scripts/eval-agent-contract.py`) |
 | `CLAUDE.md` / `GEMINI.md` / `.github/copilot-instructions.md` / `.cursor/rules/` | Per-client entry files, all pointing to `AGENTS.md`. |
 | `templates/INIT_QUESTIONNAIRE.md` | The clarifying-questions checklist that drives dynamic initialization. |
 | `docs/` | Human- and AI-facing docs. After-action: `docs/AGENT_EVOLUTION.md`. |

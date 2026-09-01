@@ -16,7 +16,7 @@
 
 ## 이 저장소에 있는 것
 
-표는 영어 [README.md](README.md)와 같습니다. 한국어 에이전트 계약은 [AGENTS.ko.md](AGENTS.ko.md). 언어 설명은 [docs/i18n/ko/I18N.md](docs/i18n/ko/I18N.md).
+표는 영어 [README.md](README.md)와 같습니다. 한국어 에이전트 계약은 [AGENTS.ko.md](AGENTS.ko.md). 언어 설명은 [docs/i18n/ko/I18N.md](docs/i18n/ko/I18N.md). 정적 계약 체크는 영어 [docs/EVAL.md](docs/EVAL.md).
 
 ## 빠른 시작
 

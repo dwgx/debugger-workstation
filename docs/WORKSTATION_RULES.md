@@ -1,12 +1,12 @@
-# D:\Tool\debugger AI 操作指南
+# AI 操作指南（安装根）
 
-本文件给 Codex、Claude、Gemini、Cursor 等 AI agent 使用。进入 `D:\Tool\debugger` 处理工具、MCP、更新、清理或报告前，先读本文件和 `TOOLS_INDEX.md`。
+本文件给 Codex、Claude、Gemini、Cursor 等 AI agent 使用。进入**本机安装根**（默认示例 `D:\Tool\debugger`，以 `local.json` / 当前 clone 为准）处理工具、MCP、更新、清理或报告前，先读本文件和 `TOOLS_INDEX.md`。
 
-> **说明(GitHub 读者)**:本文档描述 **bootstrap 部署后** 的工作站。`OriginalBase\`、`Launchers\`、`Reports\`、`MCP\tests\` 等目录由你在本机生成,骨架仓库中不含。
+> **说明(GitHub 读者)**:本文档描述 **bootstrap 部署后** 的工作站。文中的 `D:\Tool\debugger` 是**示例安装根**，换成你的 clone / `local.json` 即可。`OriginalBase\`、`Launchers\`、`Reports\`、`MCP\tests\` 等目录由你在本机生成,骨架仓库中不含。
 
 ## 目录定位
 
-`D:\Tool\debugger` 是 本工作站的便携式逆向、安全分析、调试、解包、移动端分析、网络抓包、系统巡检和 MCP 自动化工具箱。
+安装根是本工作站的便携式逆向、安全分析、调试、解包、移动端分析、网络抓包、系统巡检和 MCP 自动化工具箱。
 
 当前目录是已经整理过的真实物理分类目录，不是临时下载区。不要随意改分类结构、移动工具目录或删除源包。
 

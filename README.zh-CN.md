@@ -17,6 +17,8 @@
 | 路径 | 内容 |
 | --- | --- |
 | `AGENTS.zh-CN.md` | 中文权威入口:初始化握手(先问后做)、克隆主人覆盖层、MCP 策略、红线。见 [docs/i18n/zh-CN/I18N.md](docs/i18n/zh-CN/I18N.md) 与 [docs/i18n/zh-CN/MAINTAIN.md](docs/i18n/zh-CN/MAINTAIN.md)。 |
+| `OWNER.example.md` | gitignore 的 `OWNER.md` 模板。 |
+| `docs/EVAL.md` | 静态合同测评（英文，像测试一样）。 |
 | `CLAUDE.md` / `GEMINI.md` / `.github/copilot-instructions.md` / `.cursor/rules/` | 各客户端入口,均指向 `AGENTS.md`。 |
 | `templates/INIT_QUESTIONNAIRE.md` | 驱动动态初始化的澄清问题清单。 |
 | `docs/` | 给人/AI 的文档。任务结束后的进化：`docs/AGENT_EVOLUTION.md`。 |

@@ -16,7 +16,7 @@
 
 ## このリポジトリの内容
 
-英語の [README.md](README.md) と同じ表です。エージェント契約の日本語は [AGENTS.ja.md](AGENTS.ja.md)。言語の説明は [docs/i18n/ja/I18N.md](docs/i18n/ja/I18N.md)。
+英語の [README.md](README.md) と同じ表です。エージェント契約の日本語は [AGENTS.ja.md](AGENTS.ja.md)。言語の説明は [docs/i18n/ja/I18N.md](docs/i18n/ja/I18N.md)。契約の静的チェックは英語の [docs/EVAL.md](docs/EVAL.md)。
 
 ## クイックスタート
 

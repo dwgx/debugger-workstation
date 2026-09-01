@@ -5,6 +5,12 @@ Read this file before initializing or driving the station.
 
 This repository is a **skeleton**. It ships no third-party tool binaries.
 
+<!-- I18N:START -->
+**English** · [简体中文](AGENTS.zh-CN.md) · [日本語](AGENTS.ja.md) · [한국어](AGENTS.ko.md)
+<!-- I18N:END -->
+
+Read [docs/I18N.md](docs/I18N.md). Chat in the user's language. Git commits stay English.
+
 ---
 
 ## 0. What this is
@@ -27,8 +33,9 @@ Read `README.md`, this file, `manifests/tools.json`, `manifests/mcp-backends.jso
 
 ### Step 2 — Ask (required)
 
-Use `templates/INIT_QUESTIONNAIRE.md`. Cover at least:
+Use `templates/INIT_QUESTIONNAIRE.md` (or `templates/i18n/<locale>/INIT_QUESTIONNAIRE.md`). Cover at least:
 
+0. **UI language** (en / zh-CN / ja / ko) if not already obvious from chat.
 1. **Install root** (default: `D:\Tool\debugger`).
 2. **Scope**: all categories, or a subset.
 3. **MCP backends**: router-only, or `-CloneMcp` for third-party servers (skip `.env` services until asked).
@@ -131,4 +138,9 @@ Read `docs/AGENT_EVOLUTION.md` and `skills/debugger-review/SKILL.md`. Notes go i
 
 ## 7. Language
 
-Public git and tracked docs: **English** (`README.zh-CN.md` is the Chinese README). Chat with a Chinese-speaking owner: Chinese. Paths: absolute, or relative to the install root.
+1. Resolve locale: user chat → `local.json` `ui_language` → `WORKSTATION_UI_LANG` → OS UI culture → `en`.
+2. Read `AGENTS.<locale>.md` when it exists (this file is English). Use `templates/i18n/<locale>/INIT_QUESTIONNAIRE.md`.
+3. **Reply in that locale.** Persist `ui_language` in gitignored `local.json`.
+4. Public git history and commit messages stay **English**.
+
+Supported: `en`, `zh-CN`, `ja`, `ko`. Paths: absolute, or relative to the install root.

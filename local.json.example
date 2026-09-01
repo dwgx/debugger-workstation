@@ -1,0 +1,5 @@
+{
+  "ui_language": "",
+  "install_root": "",
+  "notes": "Fill after handshake. Do not commit local.json. ui_language: en | zh-CN | ja | ko."
+}

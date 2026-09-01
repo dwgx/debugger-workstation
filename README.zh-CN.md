@@ -1,12 +1,14 @@
 # debugger-workstation
 
-[English](README.md) · **简体中文**
+<!-- I18N:START -->
+[English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
+<!-- I18N:END -->
 
 便携式逆向 / 安全分析 / 调试 / 解包 / 移动端分析 / 网络抓包 / 系统巡检 / MCP 自动化工作站的 **骨架仓库**。
 
-任何 AI agent(Claude / Codex / Gemini / Cursor / Copilot)或人类 clone 后,按文档与 manifest 即可在自己机器上还原一个**可被 AI 最高效调用**的工具站。
+任何 AI agent(Claude / Codex / Gemini / Cursor / Copilot / Grok)或人类 clone 后,按 [docs/i18n/zh-CN/I18N.md](docs/i18n/zh-CN/I18N.md) 选定界面语言,走 [AGENTS.zh-CN.md](AGENTS.zh-CN.md) 握手,即可在自己机器上还原一个**可被 AI 最高效调用**的工具站。对话用中文；git 提交说明保持英文。
 
-> ⚠️ **本仓库不分发任何第三方工具二进制。** 工具靠 `manifests/` + `scripts/bootstrap.ps1` 从各官方源拉取。详见 [DISCLAIMER.md](DISCLAIMER.md)。
+> ⚠️ **本仓库不分发任何第三方工具二进制。** 工具靠 `manifests/` + `scripts/bootstrap.ps1` 从各官方源拉取。详见 [DISCLAIMER.zh-CN.md](DISCLAIMER.zh-CN.md)。
 
 ---
 
@@ -14,7 +16,7 @@
 
 | 路径 | 内容 |
 | --- | --- |
-| `AGENTS.md` | 面向所有 AI agent 的**权威入口**:初始化握手(先问后做)、MCP 策略、边界。 |
+| `AGENTS.zh-CN.md` | 中文权威入口:初始化握手(先问后做)、MCP 策略、边界。语言说明见 [docs/i18n/zh-CN/I18N.md](docs/i18n/zh-CN/I18N.md)。 |
 | `CLAUDE.md` / `GEMINI.md` / `.github/copilot-instructions.md` / `.cursor/rules/` | 各客户端入口,均指向 `AGENTS.md`。 |
 | `templates/INIT_QUESTIONNAIRE.md` | 驱动动态初始化的澄清问题清单。 |
 | `docs/` | 给人/AI 的文档。任务结束后的进化：`docs/AGENT_EVOLUTION.md`。 |
@@ -26,7 +28,8 @@
 | `mcp/debugger-router/server.py` | **自研**轻量 MCP 路由(按需启动后端,默认唯一启用)。 |
 | `mcp/bin/*.cmd` | **自研**后端 MCP 包装脚本(相对路径,可移植)。 |
 | `mcp/.mcp.json.template` | MCP 配置模板,bootstrap 替换 `{{DEBUGGER_ROOT}}`。 |
-| `scripts/bootstrap.ps1` | 按 manifest 还原工作站(默认 dry-run)。 |
+| `scripts/download-tools.ps1` | 授权后从官方源拉便携包(`-Apply`)。Npcap 只下安装包,不静默装驱动。 |
+| `templates/i18n/zh-CN/INIT_QUESTIONNAIRE.md` | 中文初始化问卷。 |
 
 **不包含**(由 `.gitignore` 硬排除):工具二进制、`.env`/凭据、`.venv`/`node_modules`/运行时、样本/pcap/dump、临时工作区、本机 git 历史。
 
@@ -49,17 +52,17 @@ pwsh scripts\bootstrap.ps1 -Apply -CloneMcp -InstallRoot "D:\Tool\debugger"
 
 ## AI 接手请先读
 
-任何 AI clone 本仓库后,**先读根目录 [AGENTS.md](AGENTS.md)**(权威入口,含初始化握手协议)。各客户端入口:Claude→`CLAUDE.md`、Gemini→`GEMINI.md`、Cursor→`.cursor/rules/`、Copilot→`.github/copilot-instructions.md`,均指向 AGENTS.md。
+任何 AI clone 本仓库后,**先按界面语言读 [AGENTS.zh-CN.md](AGENTS.zh-CN.md)**(英文正文仍是 [AGENTS.md](AGENTS.md))。各客户端入口:Claude→`CLAUDE.md`、Gemini→`GEMINI.md`、Cursor→`.cursor/rules/`、Copilot→`.github/copilot-instructions.md`。
 
 核心理念:当被要求搭建工作站时,AI **不会直接动手**。它先只读探索 → 提澄清问题(安装根目录、范围、哪些 MCP、是否下载二进制、AI 客户端、系统级组件)→ 给出计划 → 经你确认后才执行 `bootstrap.ps1`。
 
 延伸阅读:
-1. [AGENTS.md](AGENTS.md) — **权威入口**:初始化握手(先问后做)、MCP 策略、边界。
-2. [templates/INIT_QUESTIONNAIRE.md](templates/INIT_QUESTIONNAIRE.md) — 初始化提问清单。
-3. [docs/AI_USAGE_GUIDE.md](docs/AI_USAGE_GUIDE.md) — 阅读顺序、可主动执行项。
-4. [docs/WORKSTATION_RULES.md](docs/WORKSTATION_RULES.md) — 原工作站总规则、更新/清理流程。
-5. [manifests/](manifests/) — 工具与 MCP 清单。
-6. [docs/extensions/INDEX.md](docs/extensions/INDEX.md) — 可引入的扩展资源。
+1. [AGENTS.zh-CN.md](AGENTS.zh-CN.md) — **中文权威入口**。
+2. [templates/i18n/zh-CN/INIT_QUESTIONNAIRE.md](templates/i18n/zh-CN/INIT_QUESTIONNAIRE.md) — 初始化提问清单。
+3. [docs/i18n/zh-CN/I18N.md](docs/i18n/zh-CN/I18N.md) — 语言与初始化。
+4. [docs/i18n/zh-CN/AI_USAGE_GUIDE.md](docs/i18n/zh-CN/AI_USAGE_GUIDE.md) — 阅读顺序。
+5. [docs/WORKSTATION_RULES.md](docs/WORKSTATION_RULES.md) — 部署后中文操作规则。
+6. [manifests/](manifests/) — 工具与 MCP 清单。
 
 ## MCP 策略
 
@@ -72,7 +75,7 @@ pwsh scripts\bootstrap.ps1 -Apply -CloneMcp -InstallRoot "D:\Tool\debugger"
 ## 许可
 
 - 本仓库自研部分(`mcp/debugger-router`、`mcp/bin`、`scripts`、文档)的许可见 [LICENSE](LICENSE)(MIT)。
-- 第三方工具与第三方 MCP 的版权和许可归各上游所有,本仓库不再分发其代码或二进制。详见 [DISCLAIMER.md](DISCLAIMER.md)。
+- 第三方工具与第三方 MCP 的版权和许可归各上游所有,本仓库不再分发其代码或二进制。详见 [DISCLAIMER.zh-CN.md](DISCLAIMER.zh-CN.md)。
 
 ## 贡献与安全
 

@@ -1,36 +1,32 @@
-# 免责声明 / DISCLAIMER
+# Disclaimer
 
-## 关于第三方工具
+<!-- I18N:START -->
+**English** · [简体中文](DISCLAIMER.zh-CN.md) · [日本語](DISCLAIMER.ja.md) · [한국어](DISCLAIMER.ko.md)
+<!-- I18N:END -->
 
-本仓库(debugger-workstation)是一个**骨架 / bootstrap 仓库**。它**不包含、不分发、不再发布**任何第三方逆向、调试、安全分析工具的源码或二进制,包括但不限于:
+## Third-party tools
 
-Ghidra、IDA Pro、radare2、x64dbg、ImHex、Detect It Easy、capa、FLOSS、YARA-X、ILSpy、dnSpy/dnSpyEx、ReClass.NET、ScyllaHide、Cheat Engine、JADX、Apktool、MobSF、objection、Reqable、Wireshark、7-Zip、Universal Extractor、AssetRipper、Il2CppDumper、GoReSym、pyinstxtractor-ng、Volatility 3、Sysinternals、System Informer 等。
+**debugger-workstation** is a **skeleton / bootstrap**. It does **not** contain, distribute, or re-publish source or binaries of third-party reverse-engineering, debugging, or security tools, including but not limited to:
 
-其中 **IDA Pro 是 Hex-Rays 的商业软件**,需用户自行购买授权并从官方安装;本仓库既不分发 IDA 本体,也不规避其授权。
+Ghidra, IDA Pro, radare2, x64dbg, ImHex, Detect It Easy, capa, FLOSS, YARA-X, ILSpy, dnSpy/dnSpyEx, ReClass.NET, ScyllaHide, Cheat Engine, JADX, Apktool, MobSF, objection, Reqable, Wireshark, 7-Zip, Universal Extractor, AssetRipper, Il2CppDumper, GoReSym, pyinstxtractor-ng, Volatility 3, Sysinternals, System Informer.
 
-这些工具的**版权、商标和许可均归各自官方 / 作者所有**。本仓库仅在 `manifests/tools.json` 中记录其名称、版本和**官方下载源链接**,由使用者通过 `scripts/bootstrap.ps1` 或手工从官方渠道获取。
+**IDA Pro is Hex-Rays commercial software.** You buy a license and install it yourself. This repo does not ship IDA and does not circumvent its licensing.
 
-## 关于第三方 MCP server
+Copyright, trademarks, and licenses stay with each vendor. This repo only records names, versions, and **official download URLs** in `manifests/tools.json`. You fetch tools via `scripts/bootstrap.ps1` / `scripts/download-tools.ps1` or by hand.
 
-`manifests/mcp-backends.json` 中列出的第三方 MCP backend(ILSpy-Mcp、ReClass.NET-MCP、YaraFlux、apktool-mcp-server、cheatengine-mcp-bridge、dnspy-mcp、dnspy-mcp-extension、frida-mcp、ida-pro-mcp、imhexMCP、mcp-wireshark、mcp7zop、mobsf-mcp-server、reqable-mcp、radare2-mcp、volatility3-mcp、mcp-virustotal 等)的代码**不包含在本仓库中**,其版权和许可归各上游仓库所有。bootstrap 仅按上游 URL 执行 `git clone`。
+## Third-party MCP servers
 
-其中 **VirusTotal MCP(mcp-virustotal)** 在使用时会把哈希、URL、IP、域名等指标(IOC)发送到 VirusTotal 的公网 API,需用户自备 `VIRUSTOTAL_API_KEY`。请仅在获得授权的调查中使用,遵守 VirusTotal 服务条款,且不要上传含敏感信息的样本或数据。
+Backends listed in `manifests/mcp-backends.json` are **not** in this git tree. Bootstrap only `git clone`s upstream URLs. **VirusTotal MCP** sends IOCs (hashes, URLs, IPs, domains) to VirusTotal's public API and needs your `VIRUSTOTAL_API_KEY`. Use it only on authorized investigations; do not upload sensitive samples.
 
-## 自研部分
+## In-tree work
 
-仅以下内容为本仓库自研、随仓库分发:
-- `mcp/debugger-router/` — 轻量 MCP 路由。
-- `mcp/bin/*.cmd` — 后端 MCP 包装脚本。
-- `mcp/.mcp.json.template`、`mcp/codex-mcp-config.example.toml` — 配置模板。
-- `scripts/`、`docs/`、`manifests/` — 脚本、文档、清单。
+Shipped here: `mcp/debugger-router/`, `mcp/bin/*.cmd`, MCP templates, `scripts/`, `docs/`, `manifests/`. License: [LICENSE](LICENSE).
 
-其许可见 [LICENSE](LICENSE)。
+## Your responsibility
 
-## 使用责任
+- Intended for **authorized** security testing, CTF, research, defensive analysis, and education.
+- The set includes debuggers, injectors, hooks, capture, and memory tools. AV/EDR may fire. Some EULAs forbid reversing. **You** must keep your use lawful and authorized.
+- Do not use this for unauthorized intrusion, breaking commercial copy protection, bypassing anti-cheat, or attacking systems you do not own.
+- Do not run unknown / malware samples on the host; use an isolated VM.
 
-- 本工作站面向**授权的安全测试、CTF、安全研究、防御性分析和教育用途**。
-- 工具集含调试器、注入器、Hook、抓包、内存分析能力,可能被安全软件拦截,可能违反某些软件的 EULA(如对受保护软件进行逆向)。**使用者须自行确保其行为合法且已获授权。**
-- 不要用于未授权的入侵、破解商业软件版权保护、规避反作弊、攻击他人系统等用途。
-- 不要在宿主机直接运行未知 / 恶意样本;高风险样本应放隔离 VM/沙箱。
-
-作者不对使用本仓库或据此获取的工具所造成的任何后果负责。
+The authors are not liable for consequences of using this repo or tools obtained from the official links it cites.

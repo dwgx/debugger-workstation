@@ -1,5 +1,9 @@
 # Optional private binary cache
 
+<!-- I18N:START -->
+**English** · [简体中文](i18n/zh-CN/CACHE.md) · [日本語](i18n/ja/CACHE.md) · [한국어](i18n/ko/CACHE.md)
+<!-- I18N:END -->
+
 This public template **does not** ship third-party binaries (see [DISCLAIMER.md](../DISCLAIMER.md)).
 
 If you keep your **own** private GitHub Release (or disk archive) of official zips:

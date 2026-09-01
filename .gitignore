@@ -105,6 +105,7 @@ mcp/.mcp.json
 mcp/codex-mcp-config.toml
 /.mcp.json
 /.cursor/mcp.json
+local.json
 
 # --- 部署后的分类目录 / 报告 / 原始包 (骨架仓库不含) ---
 /Static-Reversing/

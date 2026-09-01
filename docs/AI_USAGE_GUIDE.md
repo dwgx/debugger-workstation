@@ -1,5 +1,9 @@
 # AI usage guide
 
+<!-- I18N:START -->
+**English** · [简体中文](i18n/zh-CN/AI_USAGE_GUIDE.md) · [日本語](i18n/ja/AI_USAGE_GUIDE.md) · [한국어](i18n/ko/AI_USAGE_GUIDE.md)
+<!-- I18N:END -->
+
 After clone, agents read **[`AGENTS.md`](../AGENTS.md)** first (handshake + MCP policy).
 
 This file is the post-bootstrap reading order. Directories such as `Reports\`, `OriginalBase\`, and backend `tests\` are created on the install machine; they are not in the skeleton git.

@@ -43,6 +43,13 @@ $ErrorActionPreference = "Stop"
 $RepoRoot = Split-Path -Parent $PSScriptRoot
 $Mode = if ($Apply) { "APPLY" } else { "DRY-RUN" }
 
+. (Join-Path $PSScriptRoot 'resolve-locale.ps1')
+$localeProbe = $RepoRoot
+if (Test-Path -LiteralPath (Join-Path $InstallRoot 'local.json')) {
+    $localeProbe = $InstallRoot
+}
+$uiLocale = Get-WorkstationLocale -RepoRoot $localeProbe
+
 function Write-Step($msg) { Write-Host "[$Mode] $msg" -ForegroundColor Cyan }
 function Write-Plan($msg) { Write-Host "        -> $msg" -ForegroundColor DarkGray }
 function Write-Warn2($msg) { Write-Host "[WARN] $msg" -ForegroundColor Yellow }
@@ -59,6 +66,7 @@ Write-Host " debugger-workstation bootstrap  ($Mode)" -ForegroundColor Green
 Write-Host " RepoRoot    : $RepoRoot"
 Write-Host " InstallRoot : $InstallRoot"
 Write-Host "==================================================" -ForegroundColor Green
+Write-LocaleBanner -RepoRoot $RepoRoot -Locale $uiLocale
 if (-not $Apply) {
     Write-Warn2 "当前是 DRY-RUN,只展示计划,不写盘/不下载。确认后加 -Apply 执行。"
 }
@@ -111,11 +119,18 @@ if (Test-SamePath $binSrc $binDst) {
 Write-Step "部署 AI 入口文件 (AGENTS/CLAUDE/GEMINI + 各客户端)"
 $entryMap = @(
     @{ src = "AGENTS.md";                               dst = "AGENTS.md" },
+    @{ src = "AGENTS.zh-CN.md";                         dst = "AGENTS.zh-CN.md" },
+    @{ src = "AGENTS.ja.md";                            dst = "AGENTS.ja.md" },
+    @{ src = "AGENTS.ko.md";                            dst = "AGENTS.ko.md" },
     @{ src = "CLAUDE.md";                               dst = "CLAUDE.md" },
     @{ src = "GEMINI.md";                               dst = "GEMINI.md" },
     @{ src = ".github\copilot-instructions.md";         dst = ".github\copilot-instructions.md" },
     @{ src = ".cursor\rules\debugger-workstation.mdc";  dst = ".cursor\rules\debugger-workstation.mdc" },
-    @{ src = "templates\INIT_QUESTIONNAIRE.md";         dst = "templates\INIT_QUESTIONNAIRE.md" }
+    @{ src = "templates\INIT_QUESTIONNAIRE.md";         dst = "templates\INIT_QUESTIONNAIRE.md" },
+    @{ src = "locales.json";                            dst = "locales.json" },
+    @{ src = "docs\I18N.md";                            dst = "docs\I18N.md" },
+    @{ src = "local.json.example";                      dst = "local.json.example" },
+    @{ src = "scripts\resolve-locale.ps1";              dst = "scripts\resolve-locale.ps1" }
 )
 foreach ($e in $entryMap) {
     $src = Join-Path $RepoRoot $e.src
@@ -126,6 +141,21 @@ foreach ($e in $entryMap) {
     if ($Apply) {
         New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dst) | Out-Null
         Copy-Item $src $dst -Force
+    }
+}
+$i18nDirs = @(
+    @{ src = "templates\i18n"; dst = "templates\i18n" },
+    @{ src = "docs\i18n"; dst = "docs\i18n" }
+)
+foreach ($d in $i18nDirs) {
+    $src = Join-Path $RepoRoot $d.src
+    $dst = Join-Path $InstallRoot $d.dst
+    if (-not (Test-Path $src)) { continue }
+    if (Test-SamePath $src $dst) { Write-Plan "[skip self-copy] $($d.src)"; continue }
+    Write-Plan "copy $($d.src) -> $dst"
+    if ($Apply) {
+        New-Item -ItemType Directory -Force -Path $dst | Out-Null
+        Copy-Item -Path (Join-Path $src '*') -Destination $dst -Recurse -Force
     }
 }
 
@@ -250,6 +280,13 @@ if (-not $SkipTools) {
 Write-Host ""
 Write-Host "==================================================" -ForegroundColor Green
 if ($Apply) {
+    $envHint = $null
+    foreach ($cand in @($env:WORKSTATION_UI_LANG, $env:DEBUGGER_UI_LANG, $env:VRC_DCC_UI_LANG)) {
+        if (-not [string]::IsNullOrWhiteSpace($cand)) { $envHint = $cand; break }
+    }
+    if ($envHint) {
+        Save-WorkstationLocale -RepoRoot $InstallRoot -Locale $uiLocale
+    }
     Write-Host " 完成。下一步: 按上面官方源获取工具二进制," -ForegroundColor Green
     Write-Host " 然后重建第三方 MCP 的 .venv/dotnet/node 依赖并 smoke test。" -ForegroundColor Green
 } else {

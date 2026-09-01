@@ -11,9 +11,9 @@ Skeleton reverse-engineering station. No third-party binaries in git. Restore wi
 
 ## Init (ask, then act)
 
-1. Explore (read-only): `README.md`, `AGENTS.md`, `manifests/*.json`.
-2. Ask: install root, scope, clone MCP?, download binaries?, client, Npcap? — `templates/INIT_QUESTIONNAIRE.md`.
-3. Plan, then confirm.
+1. Explore (read-only): `README.md`, `AGENTS.md` (or `AGENTS.<locale>.md`), `manifests/*.json`, `docs/I18N.md`.
+2. Ask Q0 language if needed, then install root, scope, clone MCP?, download binaries?, client, Npcap? — `templates/INIT_QUESTIONNAIRE.md` or `templates/i18n/<locale>/INIT_QUESTIONNAIRE.md`.
+3. Plan, then confirm. Chat in the resolved locale. Git commits stay English.
 4. `bootstrap.ps1` dry-run → `-Apply` → optional `-CloneMcp` → authorized `download-tools.ps1 -Apply`.
 
 ## High-risk

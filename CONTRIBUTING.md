@@ -34,10 +34,11 @@ powershell -NoProfile -Command "[System.Management.Automation.PSParser]::Tokeniz
 python -m py_compile mcp/debugger-router/server.py
 ```
 
-3. English `README.md` is canonical; keep `README.zh-CN.md` in sync for user-facing changes. Do not add extra README languages unless you will maintain them.
-   面向用户的正文以英文 `README.md` 为准,同步 `README.zh-CN.md`。不要增加无法维护的其它语言 README。
-- Contract files (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`) are English. Chinese operational cheat-sheets may remain under `docs/TOOLS_INDEX.md` / `docs/EXPERT_PLAYBOOK.md`.
-  合同文件用英文。`docs/TOOLS_INDEX.md` / `docs/EXPERT_PLAYBOOK.md` 可以是中文实战速查。
+3. English `README.md` is canonical. Keep `README.zh-CN.md`, `README.ja.md`, and `README.ko.md` in sync for user-facing changes. Same for `AGENTS.*` / `DISCLAIMER.*` siblings listed in `locales.json`.
+   面向用户的正文以英文 `README.md` 为准，并同步简中 / 日 / 韩 README。`locales.json` 列出的 `AGENTS.*` / `DISCLAIMER.*` 同样保持同步。
+- Contract files: English is canonical; localized siblings live next to them. Chinese operational cheat-sheets may remain under `docs/TOOLS_INDEX.md` / `docs/EXPERT_PLAYBOOK.md`.
+  合同以英文为正文，旁边放译文。`docs/TOOLS_INDEX.md` / `docs/EXPERT_PLAYBOOK.md` 可以是中文实战速查。
+- See `docs/I18N.md` before adding a language.
 
 ## Commit & PR style / 提交与 PR 规范
 

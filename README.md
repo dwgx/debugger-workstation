@@ -1,6 +1,8 @@
 # debugger-workstation
 
-**English** · [简体中文](README.zh-CN.md)
+<!-- I18N:START -->
+**English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
+<!-- I18N:END -->
 
 A **skeleton repository** for a portable reverse-engineering / security-analysis / debugging / unpacking / mobile-analysis / network-capture / system-inspection / MCP-automation workstation.
 
@@ -16,7 +18,7 @@ After a job, agents score the slice (`skills/debugger-review`) and write `notes/
 
 | Path | Contents |
 | --- | --- |
-| `AGENTS.md` | **Authoritative entry** for all AI agents — initialization handshake (ask-then-act), MCP strategy, boundaries. |
+| `AGENTS.md` | **Authoritative entry** for all AI agents — initialization handshake (ask-then-act), MCP strategy, boundaries. Localized: `AGENTS.zh-CN.md` / `AGENTS.ja.md` / `AGENTS.ko.md`. See [docs/I18N.md](docs/I18N.md). |
 | `CLAUDE.md` / `GEMINI.md` / `.github/copilot-instructions.md` / `.cursor/rules/` | Per-client entry files, all pointing to `AGENTS.md`. |
 | `templates/INIT_QUESTIONNAIRE.md` | The clarifying-questions checklist that drives dynamic initialization. |
 | `docs/` | Human- and AI-facing docs. After-action: `docs/AGENT_EVOLUTION.md`. |
@@ -53,7 +55,7 @@ powershell -File scripts\download-tools.ps1 -Apply
 
 ## For AI agents: read this first
 
-After cloning, **read [AGENTS.md](AGENTS.md) first** (the authoritative entry, including the initialization handshake protocol). Per-client entries — Claude→`CLAUDE.md`, Gemini→`GEMINI.md`, Cursor→`.cursor/rules/`, Copilot→`.github/copilot-instructions.md` — all point to `AGENTS.md`.
+After cloning, resolve the UI locale ([docs/I18N.md](docs/I18N.md)) and **read the matching [AGENTS.md](AGENTS.md)** (`AGENTS.zh-CN.md` / `AGENTS.ja.md` / `AGENTS.ko.md`). Chat in that language. Git commits stay English.
 
 The key idea: when asked to set up the workstation, the AI **does not act immediately**. It explores (read-only), asks clarifying questions (install root, scope, which MCPs, whether to download binaries, AI client, system-level components), presents a plan, and only then — after your confirmation — runs `bootstrap.ps1`.
 

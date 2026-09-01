@@ -6,7 +6,7 @@
 
 A **skeleton repository** for a portable reverse-engineering / security-analysis / debugging / unpacking / mobile-analysis / network-capture / system-inspection / MCP-automation workstation.
 
-Any AI agent (Claude / Codex / Gemini / Cursor / Copilot) or human can clone this repo and reconstruct, on their own machine, a tooling station that is **optimized for AI to drive** — following the docs and manifests here.
+Any agent (Claude / Codex / Gemini / Cursor / Copilot) or human can clone this repo and reconstruct, on their own machine, a tooling station that is **optimized for AI to drive** — following the docs and manifests here. This tree is a **reference skeleton**: the clone owner keeps their own tools and prompts (`OWNER.example.md` → gitignored `OWNER.md`). Agents may **self-maintain this clone** when the owner asks; stop lines cannot be waived in chat ([docs/MAINTAIN.md](docs/MAINTAIN.md)).
 
 After a job, agents score the slice (`skills/debugger-review`) and write `notes/` so the next session does not rediscover the same failure (Windows in-place `mcp`/`MCP`, Defender PUA, lazy MCP). See [docs/AGENT_EVOLUTION.md](docs/AGENT_EVOLUTION.md).
 
@@ -18,7 +18,8 @@ After a job, agents score the slice (`skills/debugger-review`) and write `notes/
 
 | Path | Contents |
 | --- | --- |
-| `AGENTS.md` | **Authoritative entry** for all AI agents — initialization handshake (ask-then-act), MCP strategy, boundaries. Localized: `AGENTS.zh-CN.md` / `AGENTS.ja.md` / `AGENTS.ko.md`. See [docs/I18N.md](docs/I18N.md). |
+| `AGENTS.md` | **Authoritative entry** for all AI agents — initialization handshake (ask-then-act), clone-owner overlay, MCP strategy, stop lines. Localized: `AGENTS.zh-CN.md` / `AGENTS.ja.md` / `AGENTS.ko.md`. See [docs/I18N.md](docs/I18N.md) and [docs/MAINTAIN.md](docs/MAINTAIN.md). |
+| `OWNER.example.md` | Template for gitignored `OWNER.md` — this clone's prompt pack. |
 | `CLAUDE.md` / `GEMINI.md` / `.github/copilot-instructions.md` / `.cursor/rules/` | Per-client entry files, all pointing to `AGENTS.md`. |
 | `templates/INIT_QUESTIONNAIRE.md` | The clarifying-questions checklist that drives dynamic initialization. |
 | `docs/` | Human- and AI-facing docs. After-action: `docs/AGENT_EVOLUTION.md`. |

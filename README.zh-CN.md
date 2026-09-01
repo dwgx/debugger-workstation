@@ -6,7 +6,7 @@
 
 便携式逆向 / 安全分析 / 调试 / 解包 / 移动端分析 / 网络抓包 / 系统巡检 / MCP 自动化工作站的 **骨架仓库**。
 
-任何 AI agent(Claude / Codex / Gemini / Cursor / Copilot / Grok)或人类 clone 后,按 [docs/i18n/zh-CN/I18N.md](docs/i18n/zh-CN/I18N.md) 选定界面语言,走 [AGENTS.zh-CN.md](AGENTS.zh-CN.md) 握手,即可在自己机器上还原一个**可被 AI 最高效调用**的工具站。对话用中文；git 提交说明保持英文。
+任何 AI agent(Claude / Codex / Gemini / Cursor / Copilot / Grok)或人类 clone 后,按 [docs/i18n/zh-CN/I18N.md](docs/i18n/zh-CN/I18N.md) 选定界面语言,走 [AGENTS.zh-CN.md](AGENTS.zh-CN.md) 握手,即可在自己机器上还原一个**可被 AI 最高效调用**的工具站。本树是**参考骨架**：主人保留自己的工具和提示词（`OWNER.example.md` → gitignore 的 `OWNER.md`）。主人要求时 agent 可以**改这个 clone**；聊天不能取消红线（[docs/i18n/zh-CN/MAINTAIN.md](docs/i18n/zh-CN/MAINTAIN.md)）。对话用中文；git 提交说明保持英文。
 
 > ⚠️ **本仓库不分发任何第三方工具二进制。** 工具靠 `manifests/` + `scripts/bootstrap.ps1` 从各官方源拉取。详见 [DISCLAIMER.zh-CN.md](DISCLAIMER.zh-CN.md)。
 
@@ -16,7 +16,7 @@
 
 | 路径 | 内容 |
 | --- | --- |
-| `AGENTS.zh-CN.md` | 中文权威入口:初始化握手(先问后做)、MCP 策略、边界。语言说明见 [docs/i18n/zh-CN/I18N.md](docs/i18n/zh-CN/I18N.md)。 |
+| `AGENTS.zh-CN.md` | 中文权威入口:初始化握手(先问后做)、克隆主人覆盖层、MCP 策略、红线。见 [docs/i18n/zh-CN/I18N.md](docs/i18n/zh-CN/I18N.md) 与 [docs/i18n/zh-CN/MAINTAIN.md](docs/i18n/zh-CN/MAINTAIN.md)。 |
 | `CLAUDE.md` / `GEMINI.md` / `.github/copilot-instructions.md` / `.cursor/rules/` | 各客户端入口,均指向 `AGENTS.md`。 |
 | `templates/INIT_QUESTIONNAIRE.md` | 驱动动态初始化的澄清问题清单。 |
 | `docs/` | 给人/AI 的文档。任务结束后的进化：`docs/AGENT_EVOLUTION.md`。 |

@@ -38,7 +38,7 @@ python -m py_compile mcp/debugger-router/server.py
    面向用户的正文以英文 `README.md` 为准，并同步简中 / 日 / 韩 README。`locales.json` 列出的 `AGENTS.*` / `DISCLAIMER.*` 同样保持同步。
 - Contract files: English is canonical; localized siblings live next to them. Chinese operational cheat-sheets may remain under `docs/TOOLS_INDEX.md` / `docs/EXPERT_PLAYBOOK.md`.
   合同以英文为正文，旁边放译文。`docs/TOOLS_INDEX.md` / `docs/EXPERT_PLAYBOOK.md` 可以是中文实战速查。
-- See `docs/I18N.md` before adding a language.
+- See `docs/I18N.md` before adding a language. Clone-owner prompts live in gitignored `OWNER.md` (`OWNER.example.md`). Agents may patch **this clone** when the owner asks (`docs/MAINTAIN.md`); chat cannot waive stop lines.
 
 ## Commit & PR style / 提交与 PR 规范
 

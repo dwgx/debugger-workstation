@@ -14,7 +14,7 @@ Read `AGENTS.md` then `docs/AGENT_EVOLUTION.md`. This skill is **review + memory
 
 **Standard:** correctness, security, style, no drive-by. Security defaults to guilty until a negative check exists (did not run the sample on the host, did not merge 19 MCP backends into user-global config, did not commit `.env` / dumps).
 
-**Spec:** the Owner's asked slice is present; extra scope is a finding. Tests/smoke that were named were actually run.
+**Spec:** the clone owner's asked slice is present; extra scope is a finding. Tests/smoke that were named were actually run.
 
 ## Loop
 
@@ -33,4 +33,4 @@ Clients attach **debugger-router only**. Catalog `mcp/.mcp.json` is for the rout
 
 - `Reports/<date>-review.md` — scores, findings, leftover risk (local; not for git).
 - `notes/` — durable facts (Defender PUA, missing binary, pin drift).
-- Chat — Chinese to the Owner; one paragraph of scores then findings.
+- Chat — resolved locale to the clone owner; one paragraph of scores then findings.

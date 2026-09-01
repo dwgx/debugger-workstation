@@ -4,7 +4,8 @@ The station must get **smarter after each job** without growing a second constit
 
 ## What stays thin
 
-`AGENTS.md` = handshake + MCP policy + danger.  
+`AGENTS.md` = handshake + clone-owner overlay + MCP policy + danger.  
+`OWNER.md` (gitignored) = this clone's extra prompts.  
 `docs/EXPERT_PLAYBOOK.md` = how to reverse.  
 `docs/WORKSTATION_RULES.md` = how to update tools.  
 `skills/debugger-review/SKILL.md` = how to score a finished slice.

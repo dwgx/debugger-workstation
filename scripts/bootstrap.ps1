@@ -130,6 +130,7 @@ $entryMap = @(
     @{ src = "locales.json";                            dst = "locales.json" },
     @{ src = "docs\I18N.md";                            dst = "docs\I18N.md" },
     @{ src = "local.json.example";                      dst = "local.json.example" },
+    @{ src = "OWNER.example.md";                        dst = "OWNER.example.md" },
     @{ src = "scripts\resolve-locale.ps1";              dst = "scripts\resolve-locale.ps1" }
 )
 foreach ($e in $entryMap) {

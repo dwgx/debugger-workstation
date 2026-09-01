@@ -117,7 +117,7 @@ What landed, what was skipped, leftover risk.
 
 - Default client MCP: **only** `debugger-router`. It starts one of 19 backends on demand and exits.
 - Do not load every backend by default. Direct profiles: `mcp-mobile` / `mcp-re` / `mcp-net` / `mcp-ce` / `mcp-intel` / `mcp-all`.
-- Templates: `mcp/.mcp.json.template`, `mcp/codex-mcp-config.example.toml` (`{{DEBUGGER_ROOT}}`).
+- Templates: `mcp/client-mcp.json.template` (client: router only → `.mcp.json` / `.cursor/mcp.json`), `mcp/.mcp.json.template` (router inventory → `MCP/.mcp.json`), `mcp/codex-mcp-config.example.toml` (`{{DEBUGGER_ROOT}}`). See [docs/BOOTSTRAP.md](docs/BOOTSTRAP.md).
 - Never put the 19 backends into Claude / Codex / Cursor / Grok **user-global** MCP.
 - Upstream list: `manifests/mcp-backends.json`.
 - If the host already has an IDA MCP (idalib), do not add a second IDA server.

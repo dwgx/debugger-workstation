@@ -116,7 +116,7 @@ Windows で `InstallRoot` がこの clone 自身なら `mcp\` と `MCP\` は同�
 
 - クライアント既定は **`debugger-router` のみ**。19 バックエンドのうち必要な 1 つを起動して終了。
 - 全部を一度に載せない。直結プロファイル：`mcp-mobile` / `mcp-re` / `mcp-net` / `mcp-ce` / `mcp-intel` / `mcp-all`。
-- テンプレート：`mcp/.mcp.json.template`、`mcp/codex-mcp-config.example.toml`（`{{DEBUGGER_ROOT}}`）。
+- テンプレート：`mcp/client-mcp.json.template`（クライアントは router のみ → `.mcp.json` / `.cursor/mcp.json`）、`mcp/.mcp.json.template`（router 用インベントリ）、`mcp/codex-mcp-config.example.toml`。[docs/BOOTSTRAP.md](docs/BOOTSTRAP.md)。
 - Claude / Codex / Cursor / Grok の**ユーザーグローバル** MCP に 19 本を入れない。
 - 上流一覧：`manifests/mcp-backends.json`。
 - 既に IDA MCP（idalib）があるホストに、二本目の IDA サーバを足さない。

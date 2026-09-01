@@ -116,7 +116,7 @@ Windows 上若 `InstallRoot` 就是本 clone，`mcp\` 与 `MCP\` 是同一目录
 
 - 客户端默认 **只启用** `debugger-router`。按需启动 19 个后端之一，用完退出。
 - 不要默认加载全部后端。直连 profile：`mcp-mobile` / `mcp-re` / `mcp-net` / `mcp-ce` / `mcp-intel` / `mcp-all`。
-- 模板：`mcp/.mcp.json.template`、`mcp/codex-mcp-config.example.toml`（`{{DEBUGGER_ROOT}}`）。
+- 模板：`mcp/client-mcp.json.template`（客户端只挂 router → `.mcp.json` / `.cursor/mcp.json`）、`mcp/.mcp.json.template`（给 router 的后端清单 → `MCP/.mcp.json`）、`mcp/codex-mcp-config.example.toml`。见 [docs/BOOTSTRAP.md](docs/BOOTSTRAP.md)。
 - **禁止**把 19 个后端写进 Claude / Codex / Cursor / Grok **用户全局** MCP。
 - 上游清单：`manifests/mcp-backends.json`。
 - 主机已有 IDA MCP（idalib）时，不要再加第二个 IDA 服务。

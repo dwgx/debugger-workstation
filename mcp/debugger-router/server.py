@@ -76,7 +76,12 @@ def _resolve_command(command: str) -> str:
 def _load_backends() -> dict[str, str]:
     # utf-8-sig tolerates a UTF-8 BOM in case the config was hand-edited or
     # written by a tool that prepends one.
-    data = json.loads(BACKEND_CONFIG.read_text(encoding="utf-8-sig"))
+    path = BACKEND_CONFIG
+    if not path.is_file():
+        path = ROOT / "mcp" / ".mcp.json.template"
+    if not path.is_file():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8-sig"))
     servers = data.get("mcpServers", {})
     backends: dict[str, str] = {}
     for name, cfg in servers.items():

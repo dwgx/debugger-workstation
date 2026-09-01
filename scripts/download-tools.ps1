@@ -15,8 +15,10 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
+$RepoRoot = Split-Path -Parent $PSScriptRoot
+. (Join-Path $PSScriptRoot 'resolve-locale.ps1')
 if ([string]::IsNullOrWhiteSpace($InstallRoot)) {
-    $InstallRoot = Split-Path -Parent $PSScriptRoot
+    $InstallRoot = Get-WorkstationInstallRoot -RepoRoot $RepoRoot
 }
 
 function Write-Job([string]$Name, [string]$Msg) {

@@ -12,8 +12,10 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+$RepoRoot = Split-Path -Parent $PSScriptRoot
+. (Join-Path $PSScriptRoot 'resolve-locale.ps1')
 if ([string]::IsNullOrWhiteSpace($InstallRoot)) {
-    $InstallRoot = Split-Path -Parent $PSScriptRoot
+    $InstallRoot = Get-WorkstationInstallRoot -RepoRoot $RepoRoot
 }
 if (-not (Test-Path -LiteralPath $ArchivePath)) {
     throw "Archive not found: $ArchivePath"

@@ -116,7 +116,7 @@ Windows에서 `InstallRoot`가 이 clone이면 `mcp\`와 `MCP\`는 같은 폴더
 
 - 클라이언트 기본은 **`debugger-router`만**. 19개 중 필요한 하나를 켜고 종료합니다.
 - 전부를 기본으로 올리지 마세요. 직접 프로필: `mcp-mobile` / `mcp-re` / `mcp-net` / `mcp-ce` / `mcp-intel` / `mcp-all`.
-- 템플릿: `mcp/.mcp.json.template`, `mcp/codex-mcp-config.example.toml` (`{{DEBUGGER_ROOT}}`).
+- 템플릿: `mcp/client-mcp.json.template`(클라이언트는 router만 → `.mcp.json` / `.cursor/mcp.json`), `mcp/.mcp.json.template`(router 목록), `mcp/codex-mcp-config.example.toml`. [docs/BOOTSTRAP.md](docs/BOOTSTRAP.md).
 - Claude / Codex / Cursor / Grok **사용자 전역** MCP에 19개를 넣지 마세요.
 - 업스트림 목록: `manifests/mcp-backends.json`.
 - 호스트에 이미 IDA MCP(idalib)가 있으면 두 번째 IDA 서버를 추가하지 마세요.

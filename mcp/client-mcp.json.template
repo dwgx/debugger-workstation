@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "debugger-router": {
+      "command": "{{DEBUGGER_ROOT}}\\MCP\\bin\\debugger-router-mcp.cmd"
+    }
+  }
+}

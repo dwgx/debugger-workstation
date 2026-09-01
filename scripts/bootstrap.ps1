@@ -25,6 +25,12 @@
 .PARAMETER SkipTools
     跳过工具下载源提示。
 
+.PARAMETER SkipRouterVenv
+    不为 debugger-router 建 .venv（CI / 布局测试）。
+
+.PARAMETER UiLanguage
+    写入 local.json 的 ui_language（en / zh-CN / ja / ko）。不传则不把 OS 猜测写入。
+
 .NOTES
     工具二进制需用户按官方源手工下载或经明确授权后由 AI 联网核验下载,
     本脚本默认不自动抓取第三方工具二进制(版权 + 体积),但用户要求时可配合执行。
@@ -36,7 +42,9 @@ param(
     [string]$InstallRoot = "D:\Tool\debugger",
     [switch]$Apply,
     [switch]$CloneMcp,
-    [switch]$SkipTools
+    [switch]$SkipTools,
+    [switch]$SkipRouterVenv,
+    [string]$UiLanguage = ''
 )
 
 $ErrorActionPreference = "Stop"
@@ -48,7 +56,7 @@ $localeProbe = $RepoRoot
 if (Test-Path -LiteralPath (Join-Path $InstallRoot 'local.json')) {
     $localeProbe = $InstallRoot
 }
-$uiLocale = Get-WorkstationLocale -RepoRoot $localeProbe
+$uiLocale = Get-WorkstationLocale -RepoRoot $localeProbe -Hint $UiLanguage
 
 function Write-Step($msg) { Write-Host "[$Mode] $msg" -ForegroundColor Cyan }
 function Write-Plan($msg) { Write-Host "        -> $msg" -ForegroundColor DarkGray }
@@ -115,49 +123,51 @@ if (Test-SamePath $binSrc $binDst) {
     }
 }
 
-# AI 入口文件复制到安装根,让部署后的工作站本身可自描述、可被任意 AI 读取初始化
-Write-Step "部署 AI 入口文件 (AGENTS/CLAUDE/GEMINI + 各客户端)"
-$entryMap = @(
-    @{ src = "AGENTS.md";                               dst = "AGENTS.md" },
-    @{ src = "AGENTS.zh-CN.md";                         dst = "AGENTS.zh-CN.md" },
-    @{ src = "AGENTS.ja.md";                            dst = "AGENTS.ja.md" },
-    @{ src = "AGENTS.ko.md";                            dst = "AGENTS.ko.md" },
-    @{ src = "CLAUDE.md";                               dst = "CLAUDE.md" },
-    @{ src = "GEMINI.md";                               dst = "GEMINI.md" },
-    @{ src = ".github\copilot-instructions.md";         dst = ".github\copilot-instructions.md" },
-    @{ src = ".cursor\rules\debugger-workstation.mdc";  dst = ".cursor\rules\debugger-workstation.mdc" },
-    @{ src = "templates\INIT_QUESTIONNAIRE.md";         dst = "templates\INIT_QUESTIONNAIRE.md" },
-    @{ src = "locales.json";                            dst = "locales.json" },
-    @{ src = "docs\I18N.md";                            dst = "docs\I18N.md" },
-    @{ src = "local.json.example";                      dst = "local.json.example" },
-    @{ src = "OWNER.example.md";                        dst = "OWNER.example.md" },
-    @{ src = "scripts\resolve-locale.ps1";              dst = "scripts\resolve-locale.ps1" }
-)
-foreach ($e in $entryMap) {
-    $src = Join-Path $RepoRoot $e.src
-    $dst = Join-Path $InstallRoot $e.dst
-    if (-not (Test-Path $src)) { continue }
-    if (Test-SamePath $src $dst) { Write-Plan "[skip self-copy] $($e.src)"; continue }
-    Write-Plan "copy $($e.src) -> $dst"
-    if ($Apply) {
-        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dst) | Out-Null
-        Copy-Item $src $dst -Force
-    }
-}
-$i18nDirs = @(
-    @{ src = "templates\i18n"; dst = "templates\i18n" },
-    @{ src = "docs\i18n"; dst = "docs\i18n" }
-)
-foreach ($d in $i18nDirs) {
-    $src = Join-Path $RepoRoot $d.src
-    $dst = Join-Path $InstallRoot $d.dst
-    if (-not (Test-Path $src)) { continue }
-    if (Test-SamePath $src $dst) { Write-Plan "[skip self-copy] $($d.src)"; continue }
-    Write-Plan "copy $($d.src) -> $dst"
+function Copy-RelTree([string]$Rel) {
+    $src = Join-Path $RepoRoot $Rel
+    $dst = Join-Path $InstallRoot $Rel
+    if (-not (Test-Path -LiteralPath $src)) { return }
+    if (Test-SamePath $src $dst) { Write-Plan "[skip self-copy] $Rel"; return }
+    Write-Plan "copy $Rel -> $dst"
     if ($Apply) {
         New-Item -ItemType Directory -Force -Path $dst | Out-Null
-        Copy-Item -Path (Join-Path $src '*') -Destination $dst -Recurse -Force
+        Get-ChildItem -LiteralPath $src -Force | Where-Object {
+            $_.Name -notin @('__pycache__', '.venv', '.git')
+        } | ForEach-Object {
+            Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $dst $_.Name) -Recurse -Force
+        }
     }
+}
+
+function Copy-RelFile([string]$Rel) {
+    $src = Join-Path $RepoRoot $Rel
+    $dst = Join-Path $InstallRoot $Rel
+    if (-not (Test-Path -LiteralPath $src)) { return }
+    if (Test-SamePath $src $dst) { Write-Plan "[skip self-copy] $Rel"; return }
+    Write-Plan "copy $Rel -> $dst"
+    if ($Apply) {
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dst) | Out-Null
+        Copy-Item -LiteralPath $src -Destination $dst -Force
+    }
+}
+
+# AI 入口 + 合同 + 手册：安装根必须能独立被 agent 打开
+Write-Step "部署骨架文件 (合同 / docs / skills / manifests / scripts)"
+$rootFiles = @(
+    'AGENTS.md', 'AGENTS.zh-CN.md', 'AGENTS.ja.md', 'AGENTS.ko.md',
+    'README.md', 'README.zh-CN.md', 'README.ja.md', 'README.ko.md',
+    'DISCLAIMER.md', 'DISCLAIMER.zh-CN.md', 'DISCLAIMER.ja.md', 'DISCLAIMER.ko.md',
+    'CLAUDE.md', 'GEMINI.md', 'CONTRIBUTING.md', 'OWNER.example.md',
+    'locales.json', 'local.json.example'
+)
+foreach ($f in $rootFiles) { Copy-RelFile $f }
+Copy-RelFile '.github\copilot-instructions.md'
+Copy-RelFile '.cursor\rules\debugger-workstation.mdc'
+Copy-RelFile 'mcp\.mcp.json.template'
+Copy-RelFile 'mcp\client-mcp.json.template'
+Copy-RelFile 'mcp\codex-mcp-config.example.toml'
+foreach ($tree in @('manifests', 'skills', 'docs', 'scripts', 'templates')) {
+    Copy-RelTree $tree
 }
 
 # --- 2. 生成本机 .mcp.json ---
@@ -171,7 +181,28 @@ if ($Apply) {
     $content = $content.Replace('{{DEBUGGER_ROOT}}', $escaped)
     New-Item -ItemType Directory -Force -Path $mcpRoot | Out-Null
     Write-Utf8NoBom $cfgDst $content
-    Write-Plan "已写入 $cfgDst"
+    Write-Plan "已写入 $cfgDst (router inventory)"
+}
+
+# Client MCP: router only. Cursor + Claude Code discover these paths.
+Write-Step "写入项目 MCP (.mcp.json / .cursor\mcp.json) — 仅 debugger-router"
+$clientTpl = Join-Path $RepoRoot "mcp\client-mcp.json.template"
+$clientText = $null
+if (Test-Path -LiteralPath $clientTpl) {
+    $clientText = (Get-Content $clientTpl -Raw -Encoding UTF8).Replace('{{DEBUGGER_ROOT}}', $escaped)
+} else {
+    Write-Warn2 "缺少 mcp\client-mcp.json.template"
+}
+$clientTargets = @(
+    (Join-Path $InstallRoot '.mcp.json'),
+    (Join-Path $InstallRoot '.cursor\mcp.json')
+)
+foreach ($cpath in $clientTargets) {
+    Write-Plan "client MCP -> $cpath"
+    if ($Apply -and $clientText) {
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $cpath) | Out-Null
+        Write-Utf8NoBom $cpath $clientText
+    }
 }
 # codex toml 模板同样替换
 $tomlTpl = Join-Path $RepoRoot "mcp\codex-mcp-config.example.toml"
@@ -189,7 +220,9 @@ Write-Step "debugger-router 运行环境 (.venv + requirements.txt)"
 $routerDir = Join-Path $mcpRoot "debugger-router"
 $routerVenv = Join-Path $routerDir ".venv"
 $routerReq = Join-Path $routerDir "requirements.txt"
-if (-not $havePy) {
+if ($SkipRouterVenv) {
+    Write-Plan "[skip] router .venv (-SkipRouterVenv)"
+} elseif (-not $havePy) {
     Write-Warn2 "未检测到 python:无法为 router 建 .venv。请装 Python 3.11+ 后重跑,或确保 frida-mcp 的 .venv 已含 mcp 包(回退路径)。"
 } elseif (Test-Path (Join-Path $routerVenv "Scripts\python.exe")) {
     Write-Plan "[skip] router .venv 已存在: $routerVenv"
@@ -282,14 +315,25 @@ Write-Host ""
 Write-Host "==================================================" -ForegroundColor Green
 if ($Apply) {
     $envHint = $null
-    foreach ($cand in @($env:WORKSTATION_UI_LANG, $env:DEBUGGER_UI_LANG, $env:VRC_DCC_UI_LANG)) {
+    foreach ($cand in @($UiLanguage, $env:WORKSTATION_UI_LANG, $env:DEBUGGER_UI_LANG, $env:VRC_DCC_UI_LANG)) {
         if (-not [string]::IsNullOrWhiteSpace($cand)) { $envHint = $cand; break }
     }
-    if ($envHint) {
-        Save-WorkstationLocale -RepoRoot $InstallRoot -Locale $uiLocale
+    $writeLocale = [bool]$envHint
+    if (-not (Test-Path -LiteralPath (Join-Path $InstallRoot 'local.json'))) {
+        $ex = Join-Path $InstallRoot 'local.json.example'
+        if (-not (Test-Path -LiteralPath $ex)) { $ex = Join-Path $RepoRoot 'local.json.example' }
+        if (Test-Path -LiteralPath $ex) {
+            Copy-Item -LiteralPath $ex -Destination (Join-Path $InstallRoot 'local.json')
+        }
+    }
+    if ($writeLocale) {
+        Save-WorkstationLocale -RepoRoot $InstallRoot -Locale $uiLocale -InstallRoot $InstallRoot -WriteLocale
+    } else {
+        Save-WorkstationLocale -RepoRoot $InstallRoot -InstallRoot $InstallRoot
     }
     Write-Host " 完成。下一步: 按上面官方源获取工具二进制," -ForegroundColor Green
     Write-Host " 然后重建第三方 MCP 的 .venv/dotnet/node 依赖并 smoke test。" -ForegroundColor Green
+    Write-Host " 项目 MCP 仅 debugger-router：.mcp.json 与 .cursor\mcp.json（gitignore）。" -ForegroundColor Green
 } else {
     Write-Host " DRY-RUN 结束。确认计划无误后:" -ForegroundColor Green
     Write-Host "   pwsh scripts\bootstrap.ps1 -Apply -CloneMcp -InstallRoot '$InstallRoot'" -ForegroundColor White
